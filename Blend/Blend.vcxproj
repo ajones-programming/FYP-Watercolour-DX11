@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\Camera.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\d3dApp.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\d3dUtil.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\DDSTextureLoader11.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\dxerr.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\DXUT.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\DXUTDevice11.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\DXUTmisc.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\GameTimer.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\GeometryGenerator.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\LightHelper.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\MathHelper.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\ScreenGrab.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\TextureMgr.cpp" />
+    <ClCompile Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\Waves.cpp" />
+    <ClCompile Include="src\Object.cpp" />
+    <ClCompile Include="src\App_1.cpp" />
+    <ClCompile Include="src\LoadingObject.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Prototype1App.cpp" />
+    <ClCompile Include="src\Effects.cpp" />
+    <ClCompile Include="src\RenderStates.cpp" />
+    <ClCompile Include="src\Vertex.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\Camera.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\d3dApp.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\d3dUtil.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\d3dx11effect.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\DDSTextureLoader11.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\dxerr.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\DXUT.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\DXUTDevice11.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\DXUTmisc.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\GameTimer.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\GeometryGenerator.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\LightHelper.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\MathHelper.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\ScreenGrab.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\TextureMgr.h" />
+    <ClInclude Include="..\..\..\DirectX\DirectX 11\Frank D. Luna\UPDATED\Waves.h" />
+    <ClInclude Include="src\Object.h" />
+    <ClInclude Include="src\App_1.h" />
+    <ClInclude Include="src\OBJ_Loader.h" />
+    <ClInclude Include="src\Prototype1App.h" />
+    <ClInclude Include="src\Effects.h" />
+    <ClInclude Include="src\RenderStates.h" />
+    <ClInclude Include="src\Vertex.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FX\LightHelper.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </None>
+    <CustomBuild Include="FX\Lighting.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /Zi /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="FX\Basic.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /Zi /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\darkbrick.bmp" />
+    <Image Include="Textures\darkbrickdxt1.dds" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{0CEBB3BC-929F-4731-8D5B-CF78DCB511A4}</ProjectGuid>
+    <RootNamespace>BoxnoEffects</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>PrototypeApp</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\utilForever\Desktop\DirectX 11\Common;$(IncludePath);$(DXSDK_DIR)Include</IncludePath>
+    <LibraryPath>C:\Users\utilForever\Desktop\DirectX 11\Common;$(LibraryPath);$(DXSDK_DIR)Lib\x86</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\Files\University\Modules\TM470 Final Year Project\DX11\DirectX\DirectX 11\Frank D. Luna\UPDATED;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;DXUT.lib;comctl32.lib;Effects11d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Files\University\Modules\TM470 Final Year Project\DX11\DirectX\DirectX 11\Frank D. Luna\UPDATED\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <FxCompile>
+      <EntryPointName>
+      </EntryPointName>
+      <ShaderType>Effect</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput />
+    </FxCompile>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
