@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\WICTextureLoader11.cpp">
+      <Filter>wic</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\Camera.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\d3dApp.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\d3dUtil.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\DDSTextureLoader11.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\dxerr.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\DXUT.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\DXUTDevice11.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\DXUTmisc.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\GameTimer.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\GeometryGenerator.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\LightHelper.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\MathHelper.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\ScreenGrab.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\TextureMgr.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="luna\Waves.cpp">
+      <Filter>luna</Filter>
+    </ClCompile>
+    <ClCompile Include="src\App_1.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoadingObject.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Effects.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Prototype1App.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderStates.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vertex.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\OBJ_Loader.h">
+      <Filter>objLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WICTextureLoader11.h">
+      <Filter>wic</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\Camera.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\d3dApp.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\d3dUtil.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\d3dx11effect.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\DDSTextureLoader11.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\dxerr.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\DXUT.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\DXUTDevice11.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\DXUTmisc.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\GameTimer.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\GeometryGenerator.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\LightHelper.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\MathHelper.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\ScreenGrab.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\TextureMgr.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="luna\Waves.h">
+      <Filter>luna</Filter>
+    </ClInclude>
+    <ClInclude Include="src\App_1.h">
+      <Filter>src\app</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object.h">
+      <Filter>src\app</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Effects.h">
+      <Filter>src\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Prototype1App.h">
+      <Filter>src\app</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderStates.h">
+      <Filter>src\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vertex.h">
+      <Filter>src\app</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="FX\Basic.fx">
+      <Filter>fx</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FX\Lighting.fx">
+      <Filter>fx</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FX\Blur.fx">
+      <Filter>fx</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{ed2b3d91-6b71-4440-968e-a33bcb4944b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fx">
+      <UniqueIdentifier>{25a57a6a-0f18-405d-afb0-db8cf1f664e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="luna">
+      <UniqueIdentifier>{5612ef25-a80b-4cbd-8932-11612fe71fd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="objLoader">
+      <UniqueIdentifier>{642bd650-6ae6-40b0-a7c9-3f0960667f31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="wic">
+      <UniqueIdentifier>{57ec3988-acc9-4441-97c6-34639fa00eb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\app">
+      <UniqueIdentifier>{58319fd0-52f5-4fe7-b20a-9f047434aad4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\rendering">
+      <UniqueIdentifier>{c74e64e1-359d-4fe5-951a-81a8761ffa0c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FX\LightHelper.fx">
+      <Filter>fx</Filter>
+    </None>
+  </ItemGroup>
+</Project>
