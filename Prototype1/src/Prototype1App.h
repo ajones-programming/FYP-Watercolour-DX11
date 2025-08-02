@@ -6,6 +6,11 @@
 #include "DirectXMath.h"
 #include "Object.h"
 
+
+#include "BlurFilter.h"
+#include "MeanShiftFilter.h"
+#include "DryBrush.h"
+
 enum RenderOptions
 {
 	Lighting = 0,
@@ -36,7 +41,6 @@ private:
 
 	DirectionalLight mDirLights[3];
 
-
 	XMFLOAT4X4 mBoxWorld;
 
 	XMFLOAT4X4 mView;
@@ -51,4 +55,21 @@ private:
 	float mRadius;
 
 	POINT mLastMousePos;
+
+	//for compute shader
+	BlurFilter mBlur;
+	MeanShiftFilter mMeanShift;
+	DryBrushFilter mDryBrushFilter;
+
+	void DrawWrapper();
+	void DrawScreenQuad();
+	void BuildScreenQuadGeometryBuffers();
+	void BuildOffscreenViews();
+
+	ID3D11Buffer* mScreenQuadVB;
+	ID3D11Buffer* mScreenQuadIB;
+
+	ID3D11ShaderResourceView* mOffscreenSRV;
+	ID3D11UnorderedAccessView* mOffscreenUAV;
+	ID3D11RenderTargetView* mOffscreenRTV;
 };

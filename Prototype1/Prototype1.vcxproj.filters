@@ -73,6 +73,18 @@
     <ClCompile Include="src\Vertex.cpp">
       <Filter>src\app</Filter>
     </ClCompile>
+    <ClCompile Include="src\BlurFilter.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MeanShiftFilter.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DryBrush.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CSFilter.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\OBJ_Loader.h">
@@ -147,6 +159,18 @@
     <ClInclude Include="src\Vertex.h">
       <Filter>src\app</Filter>
     </ClInclude>
+    <ClInclude Include="src\BlurFilter.h">
+      <Filter>src\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MeanShiftFilter.h">
+      <Filter>src\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DryBrush.h">
+      <Filter>src\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CSFilter.h">
+      <Filter>src\rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="FX\Basic.fx">
@@ -156,6 +180,15 @@
       <Filter>fx</Filter>
     </CustomBuild>
     <CustomBuild Include="FX\Blur.fx">
+      <Filter>fx</Filter>
+    </CustomBuild>
+    <CustomBuild Include="fx\MeanShift.fx">
+      <Filter>fx</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FX\BasicToonShading.fx">
+      <Filter>fx</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FX\drybrush.fx">
       <Filter>fx</Filter>
     </CustomBuild>
   </ItemGroup>

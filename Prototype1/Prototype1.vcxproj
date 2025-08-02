@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CSFilter.cpp" />
+    <ClCompile Include="src\DryBrush.cpp" />
     <ClCompile Include="luna\Camera.cpp" />
     <ClCompile Include="luna\d3dApp.cpp" />
     <ClCompile Include="luna\d3dUtil.cpp" />
@@ -34,6 +36,8 @@
     <ClCompile Include="luna\ScreenGrab.cpp" />
     <ClCompile Include="luna\TextureMgr.cpp" />
     <ClCompile Include="luna\Waves.cpp" />
+    <ClCompile Include="src\MeanShiftFilter.cpp" />
+    <ClCompile Include="src\BlurFilter.cpp" />
     <ClCompile Include="src\Effects.cpp" />
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\App_1.cpp" />
@@ -45,6 +49,8 @@
     <ClCompile Include="src\WICTextureLoader11.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\CSFilter.h" />
+    <ClInclude Include="src\DryBrush.h" />
     <ClInclude Include="luna\Camera.h" />
     <ClInclude Include="luna\d3dApp.h" />
     <ClInclude Include="luna\d3dUtil.h" />
@@ -61,6 +67,8 @@
     <ClInclude Include="luna\ScreenGrab.h" />
     <ClInclude Include="luna\TextureMgr.h" />
     <ClInclude Include="luna\Waves.h" />
+    <ClInclude Include="src\MeanShiftFilter.h" />
+    <ClInclude Include="src\BlurFilter.h" />
     <ClInclude Include="src\Effects.h" />
     <ClInclude Include="src\Object.h" />
     <ClInclude Include="src\App_1.h" />
@@ -94,6 +102,27 @@
   <ItemGroup>
     <CustomBuild Include="FX\Blur.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /Zi /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="fx\MeanShift.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /Zi /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="FX\BasicToonShading.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /Zi /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="FX\drybrush.fx">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /Zi /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>

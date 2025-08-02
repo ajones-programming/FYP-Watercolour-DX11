@@ -88,6 +88,139 @@ public:
 };
 #pragma endregion
 
+#pragma region ToonShaderBasicEffect
+class ToonShaderBasicEffect : public Effect
+{
+public:
+	ToonShaderBasicEffect(ID3D11Device* device, const std::wstring& filename);
+	~ToonShaderBasicEffect();
+
+	void SetWorldViewProj(CXMMATRIX M) { WorldViewProj->SetMatrix(reinterpret_cast<const float*>(&M)); }
+	void SetWorld(CXMMATRIX M) { World->SetMatrix(reinterpret_cast<const float*>(&M)); }
+	void SetWorldInvTranspose(CXMMATRIX M) { WorldInvTranspose->SetMatrix(reinterpret_cast<const float*>(&M)); }
+	void SetTexTransform(CXMMATRIX M) { TexTransform->SetMatrix(reinterpret_cast<const float*>(&M)); }
+	void SetEyePosW(const XMFLOAT3& v) { EyePosW->SetRawValue(&v, 0, sizeof(XMFLOAT3)); }
+	void SetFogColor(const FXMVECTOR v) { FogColor->SetFloatVector(reinterpret_cast<const float*>(&v)); }
+	void SetFogStart(float f) { FogStart->SetFloat(f); }
+	void SetFogRange(float f) { FogRange->SetFloat(f); }
+	void SetDirLights(const DirectionalLight* lights) { DirLights->SetRawValue(lights, 0, 3 * sizeof(DirectionalLight)); }
+	void SetMaterial(const Material& mat) { Mat->SetRawValue(&mat, 0, sizeof(Material)); }
+	void SetDiffuseMap(ID3D11ShaderResourceView* tex) { DiffuseMap->SetResource(tex); }
+
+	ID3DX11EffectTechnique* Light1Tech;
+	ID3DX11EffectTechnique* Light2Tech;
+	ID3DX11EffectTechnique* Light3Tech;
+
+	ID3DX11EffectTechnique* Light0TexTech;
+	ID3DX11EffectTechnique* Light1TexTech;
+	ID3DX11EffectTechnique* Light2TexTech;
+	ID3DX11EffectTechnique* Light3TexTech;
+
+	ID3DX11EffectTechnique* Light0TexAlphaClipTech;
+	ID3DX11EffectTechnique* Light1TexAlphaClipTech;
+	ID3DX11EffectTechnique* Light2TexAlphaClipTech;
+	ID3DX11EffectTechnique* Light3TexAlphaClipTech;
+
+	ID3DX11EffectTechnique* Light1FogTech;
+	ID3DX11EffectTechnique* Light2FogTech;
+	ID3DX11EffectTechnique* Light3FogTech;
+
+	ID3DX11EffectTechnique* Light0TexFogTech;
+	ID3DX11EffectTechnique* Light1TexFogTech;
+	ID3DX11EffectTechnique* Light2TexFogTech;
+	ID3DX11EffectTechnique* Light3TexFogTech;
+
+	ID3DX11EffectTechnique* Light0TexAlphaClipFogTech;
+	ID3DX11EffectTechnique* Light1TexAlphaClipFogTech;
+	ID3DX11EffectTechnique* Light2TexAlphaClipFogTech;
+	ID3DX11EffectTechnique* Light3TexAlphaClipFogTech;
+
+	ID3DX11EffectMatrixVariable* WorldViewProj;
+	ID3DX11EffectMatrixVariable* World;
+	ID3DX11EffectMatrixVariable* WorldInvTranspose;
+	ID3DX11EffectMatrixVariable* TexTransform;
+	ID3DX11EffectVectorVariable* EyePosW;
+	ID3DX11EffectVectorVariable* FogColor;
+	ID3DX11EffectScalarVariable* FogStart;
+	ID3DX11EffectScalarVariable* FogRange;
+	ID3DX11EffectVariable* DirLights;
+	ID3DX11EffectVariable* Mat;
+
+	ID3DX11EffectShaderResourceVariable* DiffuseMap;
+};
+#pragma endregion
+
+#pragma region CSEffect
+
+class CSEffect : public Effect
+{
+public:
+	CSEffect(ID3D11Device* device, const std::wstring& filename, const char* horzEffect, const char* vertEffect);
+	~CSEffect();
+
+	void SetInputMap(ID3D11ShaderResourceView* tex) { InputMap->SetResource(tex); }
+	void SetOutputMap(ID3D11UnorderedAccessView* tex) { OutputMap->SetUnorderedAccessView(tex); }
+
+	ID3DX11EffectTechnique* HorzTech;
+	ID3DX11EffectTechnique* VertTech;
+
+	ID3DX11EffectShaderResourceVariable* InputMap;
+	ID3DX11EffectUnorderedAccessViewVariable* OutputMap;
+};
+#pragma endregion
+
+#pragma endregion
+
+#pragma region BlurEffect
+class BlurEffect : public CSEffect
+{
+public:
+	BlurEffect(ID3D11Device* device);
+
+	void SetWeights(const float weights[11])           { Weights->SetFloatArray(weights, 0, 11); }
+
+	ID3DX11EffectScalarVariable* Weights;
+};
+#pragma endregion
+
+
+#pragma region MeanShiftEffect
+class MeanShiftEffect : public CSEffect
+{
+public:
+	MeanShiftEffect(ID3D11Device* device);
+
+	void SetWeights(const float weights[11]) { Weights->SetFloatArray(weights, 0, 11); }
+	void SetMagnitudeBoundary(const float dif) { magnitudeDifference->SetFloat(dif); }
+
+	ID3DX11EffectScalarVariable* Weights;
+	ID3DX11EffectScalarVariable* magnitudeDifference;
+};
+#pragma endregion
+
+#pragma region DryBrushEffect
+class DryBrushEffect : public Effect
+{
+public:
+	DryBrushEffect(ID3D11Device* device, const std::wstring& filename);
+	~DryBrushEffect();
+
+	void SetWeights(const float weights[9]) { Weights->SetFloatArray(weights, 0, 9); }
+	void SetInputMap(ID3D11ShaderResourceView* tex) { InputMap->SetResource(tex); }
+	void SetOutputMap(ID3D11UnorderedAccessView* tex) { OutputMap->SetUnorderedAccessView(tex); }
+	void SetOverlayMap(ID3D11ShaderResourceView* tex) { OverlayMap->SetResource(tex); }
+
+	ID3DX11EffectTechnique* DryBrushTech;
+	ID3DX11EffectTechnique* ReturnTech;
+
+	ID3DX11EffectShaderResourceVariable* OverlayMap;
+
+	ID3DX11EffectScalarVariable* Weights;
+	ID3DX11EffectShaderResourceVariable* InputMap;
+	ID3DX11EffectUnorderedAccessViewVariable* OutputMap;
+};
+#pragma endregion
+
 #pragma region Effects
 class Effects
 {
@@ -96,6 +229,10 @@ public:
 	static void DestroyAll();
 
 	static BasicEffect* BasicFX;
+	static ToonShaderBasicEffect* ToonShaderBasicFX;
+	static BlurEffect* BlurFX;
+	static MeanShiftEffect* MeanShiftFX;
+	static DryBrushEffect* DryBrushFX;
 };
 #pragma endregion
 

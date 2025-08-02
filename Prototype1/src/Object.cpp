@@ -93,7 +93,7 @@ Object::~Object()
 void Object::Draw(ID3D11DeviceContext* context, const XMMATRIX& view, const XMMATRIX& proj) const
 {
 
-	ID3DX11EffectTechnique* boxTech = Effects::BasicFX->Light3TexAlphaClipFogTech;
+	ID3DX11EffectTechnique* boxTech = Effects::ToonShaderBasicFX->Light3TexAlphaClipFogTech;
 	D3DX11_TECHNIQUE_DESC techDesc;
 	boxTech->GetDesc(&techDesc);
 
@@ -110,12 +110,12 @@ void Object::Draw(ID3D11DeviceContext* context, const XMMATRIX& view, const XMMA
 		XMMATRIX worldInvTranspose = MathHelper::InverseTranspose(world);
 		XMMATRIX worldViewProj = world * view * proj;
 
-		Effects::BasicFX->SetWorld(world);
-		Effects::BasicFX->SetWorldInvTranspose(worldInvTranspose);
-		Effects::BasicFX->SetWorldViewProj(worldViewProj);
-		Effects::BasicFX->SetTexTransform(XMMatrixIdentity());
-		Effects::BasicFX->SetMaterial(mModelMat);
-		Effects::BasicFX->SetDiffuseMap(mModelMapSRV);
+		Effects::ToonShaderBasicFX->SetWorld(world);
+		Effects::ToonShaderBasicFX->SetWorldInvTranspose(worldInvTranspose);
+		Effects::ToonShaderBasicFX->SetWorldViewProj(worldViewProj);
+		Effects::ToonShaderBasicFX->SetTexTransform(XMMatrixIdentity());
+		Effects::ToonShaderBasicFX->SetMaterial(mModelMat);
+		Effects::ToonShaderBasicFX->SetDiffuseMap(mModelMapSRV);
 
 		context->RSSetState(RenderStates::NoCullRS);
 		boxTech->GetPassByIndex(p)->Apply(0, context);
