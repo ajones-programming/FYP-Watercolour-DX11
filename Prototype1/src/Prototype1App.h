@@ -10,6 +10,9 @@
 #include "BlurFilter.h"
 #include "MeanShiftFilter.h"
 #include "DryBrush.h"
+#include "ColourDensity.h"
+#include "EdgeWobbleFilter.h"
+#include "TestFilter.h"
 
 enum RenderOptions
 {
@@ -60,11 +63,16 @@ private:
 	BlurFilter mBlur;
 	MeanShiftFilter mMeanShift;
 	DryBrushFilter mDryBrushFilter;
+	ColourDensityFilter mColourDensityFilter;
+	EdgeWobbleFilter mEdgeWobbleFilter;
+	TestFilter mTestFilter;
 
 	void DrawWrapper();
-	void DrawScreenQuad();
+	void DrawScreenQuad(ID3D11ShaderResourceView* toDraw);
 	void BuildScreenQuadGeometryBuffers();
 	void BuildOffscreenViews();
+
+	void InitCSFilters();
 
 	ID3D11Buffer* mScreenQuadVB;
 	ID3D11Buffer* mScreenQuadIB;

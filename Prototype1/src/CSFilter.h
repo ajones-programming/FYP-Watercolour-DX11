@@ -20,13 +20,13 @@ public:
 	/// It is OK to call Init() again to reinitialize the blur filter with a different 
 	/// dimension or format.
 	///</summary>
-	void Init(ID3D11Device* device, UINT width, UINT height, DXGI_FORMAT format);
-	void InitEffect(CSEffect* effect);
+	void virtual Init(ID3D11Device* device, UINT width, UINT height, DXGI_FORMAT format);
+	void virtual InitEffect() = 0;
 
 	///<summary>
 	/// Blurs the input texture blurCount times.  Note that this modifies the input texture, not a copy of it.
 	///</summary>
-	void Apply(ID3D11DeviceContext* dc, ID3D11ShaderResourceView* inputSRV, ID3D11UnorderedAccessView* inputUAV);
+	void Apply(ID3D11DeviceContext* dc, ID3D11ShaderResourceView* inputSRV, ID3D11UnorderedAccessView* inputUAV, ID3D11ShaderResourceView** outputSRV);
 
 protected:
 

@@ -64,6 +64,8 @@ bool PrototypeApp::Init()
 	InputLayouts::InitAll(md3dDevice);
 	RenderStates::InitAll(md3dDevice);
 
+	InitCSFilters();
+
 	BuildScreenQuadGeometryBuffers();
 	BuildOffscreenViews();
 
@@ -78,6 +80,10 @@ void PrototypeApp::OnResize()
 	mBlur.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
 	mMeanShift.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
 	mDryBrushFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+	mColourDensityFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+	mEdgeWobbleFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+	mTestFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+
 	XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f * MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
 	XMStoreFloat4x4(&mProj, P);
 }
@@ -125,12 +131,19 @@ void PrototypeApp::DrawScene()
 	renderTargets[0] = mRenderTargetView;
 	md3dImmediateContext->OMSetRenderTargets(1, renderTargets, mDepthStencilView);
 
-	mMeanShift.SetBlurBoundary(0.2);
-	mMeanShift.BlurInPlace(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, 2);
-	mBlur.SetGaussianWeights(1);
-	mBlur.BlurInPlace(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, 2);
-	mDryBrushFilter.BlurInPlace(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, 2);
+	ID3D11ShaderResourceView* output = nullptr;
+	
+	mMeanShift.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
+	mBlur.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
+	
+	mDryBrushFilter.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
+	mColourDensityFilter.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
+	mEdgeWobbleFilter.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
+	
+	
+	
 
+	
 
 	//
 	// Draw fullscreen quad with texture of blurred scene on it.
@@ -139,7 +152,7 @@ void PrototypeApp::DrawScene()
 	md3dImmediateContext->ClearRenderTargetView(mRenderTargetView, reinterpret_cast<const float*>(&Colors::Silver));
 	md3dImmediateContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-	DrawScreenQuad();
+	DrawScreenQuad(mOffscreenSRV);
 	HR(mSwapChain->Present(0, 0));
 }
 
@@ -215,7 +228,7 @@ void PrototypeApp::DrawWrapper()
 	}
 }
 
-void PrototypeApp::DrawScreenQuad()
+void PrototypeApp::DrawScreenQuad(ID3D11ShaderResourceView* toDraw)
 {
 	md3dImmediateContext->IASetInputLayout(InputLayouts::Basic32);
 	md3dImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -238,7 +251,7 @@ void PrototypeApp::DrawScreenQuad()
 		Effects::ToonShaderBasicFX->SetWorldInvTranspose(identity);
 		Effects::ToonShaderBasicFX->SetWorldViewProj(identity);
 		Effects::ToonShaderBasicFX->SetTexTransform(identity);
-		Effects::ToonShaderBasicFX->SetDiffuseMap(mDryBrushFilter.GetOutput());
+		Effects::ToonShaderBasicFX->SetDiffuseMap(toDraw);
 
 		texOnlyTech->GetPassByIndex(p)->Apply(0, md3dImmediateContext);
 		md3dImmediateContext->DrawIndexed(6, 0, 0);
@@ -324,4 +337,22 @@ void PrototypeApp::BuildOffscreenViews()
 
 	// View saves a reference to the texture so we can release our reference.
 	ReleaseCOM(offscreenTex);
+}
+
+void PrototypeApp::InitCSFilters()
+{
+	mBlur.InitEffect();
+	mMeanShift.InitEffect();
+	mDryBrushFilter.InitEffect();
+	mColourDensityFilter.InitEffect();
+	mEdgeWobbleFilter.InitEffect();
+	mTestFilter.InitEffect();
+
+	mBlur.SetGaussianWeights(0.9);
+	mMeanShift.SetGaussianWeights(3);
+	mMeanShift.SetBlurBoundary(0.2);
+	mEdgeWobbleFilter.setSmallEdgeNoiseIntensity(3);
+	
+
+
 }

@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\EdgeWobbleFilter.cpp" />
+    <ClCompile Include="src\ColourDensity.cpp" />
     <ClCompile Include="src\CSFilter.cpp" />
     <ClCompile Include="src\DryBrush.cpp" />
     <ClCompile Include="luna\Camera.cpp" />
@@ -47,8 +49,11 @@
     <ClCompile Include="src\RenderStates.cpp" />
     <ClCompile Include="src\Vertex.cpp" />
     <ClCompile Include="src\WICTextureLoader11.cpp" />
+    <ClCompile Include="src\TestFilter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\EdgeWobbleFilter.h" />
+    <ClInclude Include="src\ColourDensity.h" />
     <ClInclude Include="src\CSFilter.h" />
     <ClInclude Include="src\DryBrush.h" />
     <ClInclude Include="luna\Camera.h" />
@@ -77,6 +82,7 @@
     <ClInclude Include="src\RenderStates.h" />
     <ClInclude Include="src\Vertex.h" />
     <ClInclude Include="src\WICTextureLoader11.h" />
+    <ClInclude Include="src\TestFilter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FX\LightHelper.fx">
@@ -123,6 +129,28 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="FX\drybrush.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /Zi /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="FX\ColourDensity.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /Zi /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="FX\EdgeWobble.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /Zi /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="FX\test.fx">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /Zi /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>

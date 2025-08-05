@@ -71,14 +71,10 @@ void CSFilter::Init(ID3D11Device* device, UINT width, UINT height, DXGI_FORMAT f
 	ReleaseCOM(blurredTex);
 }
 
-void CSFilter::InitEffect(CSEffect* _effect)
-{
-	effect = _effect;
-}
-
 void CSFilter::Apply(ID3D11DeviceContext* dc,
 	ID3D11ShaderResourceView* inputSRV,
-	ID3D11UnorderedAccessView* inputUAV)
+	ID3D11UnorderedAccessView* inputUAV,
+	ID3D11ShaderResourceView** outputSRV)
 {
 	//
 	// Run the compute shader to blur the offscreen texture.
@@ -129,4 +125,5 @@ void CSFilter::Apply(ID3D11DeviceContext* dc,
 
 	// Disable compute shader.
 	dc->CSSetShader(0, 0, 0);
+	*outputSRV = GetOutput();
 }

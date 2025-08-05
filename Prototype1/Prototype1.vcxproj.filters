@@ -74,16 +74,25 @@
       <Filter>src\app</Filter>
     </ClCompile>
     <ClCompile Include="src\BlurFilter.cpp">
-      <Filter>src\rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MeanShiftFilter.cpp">
-      <Filter>src\rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DryBrush.cpp">
-      <Filter>src\rendering</Filter>
+      <Filter>src\rendering\filters</Filter>
     </ClCompile>
     <ClCompile Include="src\CSFilter.cpp">
-      <Filter>src\rendering</Filter>
+      <Filter>src\rendering\filters</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DryBrush.cpp">
+      <Filter>src\rendering\filters</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MeanShiftFilter.cpp">
+      <Filter>src\rendering\filters</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ColourDensity.cpp">
+      <Filter>src\rendering\filters</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EdgeWobbleFilter.cpp">
+      <Filter>src\rendering\filters</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TestFilter.cpp">
+      <Filter>src\rendering\filters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,16 +169,25 @@
       <Filter>src\app</Filter>
     </ClInclude>
     <ClInclude Include="src\BlurFilter.h">
-      <Filter>src\rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MeanShiftFilter.h">
-      <Filter>src\rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="src\DryBrush.h">
-      <Filter>src\rendering</Filter>
+      <Filter>src\rendering\filters</Filter>
     </ClInclude>
     <ClInclude Include="src\CSFilter.h">
-      <Filter>src\rendering</Filter>
+      <Filter>src\rendering\filters</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DryBrush.h">
+      <Filter>src\rendering\filters</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MeanShiftFilter.h">
+      <Filter>src\rendering\filters</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ColourDensity.h">
+      <Filter>src\rendering\filters</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EdgeWobbleFilter.h">
+      <Filter>src\rendering\filters</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TestFilter.h">
+      <Filter>src\rendering\filters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +207,15 @@
       <Filter>fx</Filter>
     </CustomBuild>
     <CustomBuild Include="FX\drybrush.fx">
+      <Filter>fx</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FX\ColourDensity.fx">
+      <Filter>fx</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FX\EdgeWobble.fx">
+      <Filter>fx</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FX\test.fx">
       <Filter>fx</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -213,6 +240,9 @@
     </Filter>
     <Filter Include="src\rendering">
       <UniqueIdentifier>{c74e64e1-359d-4fe5-951a-81a8761ffa0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\rendering\filters">
+      <UniqueIdentifier>{08c14e0f-a6a9-43db-9a3e-689c662d6590}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

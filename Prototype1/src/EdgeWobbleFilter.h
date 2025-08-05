@@ -5,30 +5,30 @@
 // Performs a blur operation on the topmost mip level of an input texture.
 //***************************************************************************************
 
-#ifndef DryBrushFilter_H
-#define DryBrushFilter_H
+#ifndef EdgeWobbleFilter_H
+#define EdgeWobbleFilter_H
 
 #include <Windows.h>
 #include <DirectXMath.h>
 #include "d3dUtil.h"
 #include "CSFilter.h"
 
-class DryBrushFilter : public CSFilter
+class EdgeWobbleFilter : public CSFilter
 {
 public:
-	DryBrushFilter();
-	~DryBrushFilter();
+	EdgeWobbleFilter();
+	~EdgeWobbleFilter();
 	///<summary>
 	/// Blurs the input texture blurCount times.  Note that this modifies the input texture, not a copy of it.
 	///</summary>
 	void InitEffect();
 	void Init(ID3D11Device* device, UINT width, UINT height, DXGI_FORMAT format);
+	void setSmallEdgeNoiseIntensity(float intensity);
 
 protected:
 	void HorizontalConstants();
 	void VerticalConstants();
 
-	ID3D11ShaderResourceView* mOverlayTexSRV;
 	ID3D11ShaderResourceView* mPerlinNoiseTexSRV;
 };
 
