@@ -77,11 +77,13 @@ void PrototypeApp::OnResize()
 {
 	D3DApp::OnResize();
 
-	mBlur.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+	mPreMeanShiftBlur.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+	mPostMeanShiftBlur.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
 	mMeanShift.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
 	mDryBrushFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
 	mColourDensityFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
 	mEdgeWobbleFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+	mEdgeDarkeningFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
 	mTestFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
 
 	XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f * MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
@@ -122,8 +124,7 @@ void PrototypeApp::DrawScene()
 {
 	ID3D11RenderTargetView* renderTargets[1] = { mOffscreenRTV };
 	md3dImmediateContext->OMSetRenderTargets(1, renderTargets, mDepthStencilView);
-
-	md3dImmediateContext->ClearRenderTargetView(mOffscreenRTV, reinterpret_cast<const float*>(&Colors::Silver));
+	md3dImmediateContext->ClearRenderTargetView(mOffscreenRTV, reinterpret_cast<const float*>(&clearColour));
 	md3dImmediateContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 	DrawWrapper();
@@ -133,17 +134,14 @@ void PrototypeApp::DrawScene()
 
 	ID3D11ShaderResourceView* output = nullptr;
 	
-	mMeanShift.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
-	mBlur.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
 	
+	mPreMeanShiftBlur.BlurInPlace(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output,2);
+	mMeanShift.BlurInPlace(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output, 4);
+	mPostMeanShiftBlur.BlurInPlace(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output, 2);
 	mDryBrushFilter.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
 	mColourDensityFilter.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
 	mEdgeWobbleFilter.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
-	
-	
-	
-
-	
+	mEdgeDarkeningFilter.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
 
 	//
 	// Draw fullscreen quad with texture of blurred scene on it.
@@ -341,16 +339,21 @@ void PrototypeApp::BuildOffscreenViews()
 
 void PrototypeApp::InitCSFilters()
 {
-	mBlur.InitEffect();
+	mPreMeanShiftBlur.InitEffect();
+	mPostMeanShiftBlur.InitEffect();
 	mMeanShift.InitEffect();
 	mDryBrushFilter.InitEffect();
 	mColourDensityFilter.InitEffect();
 	mEdgeWobbleFilter.InitEffect();
+	mEdgeDarkeningFilter.InitEffect();
 	mTestFilter.InitEffect();
 
-	mBlur.SetGaussianWeights(0.9);
+	mPreMeanShiftBlur.SetGaussianWeights(1.2);
+	mPostMeanShiftBlur.SetGaussianWeights(0.5);
 	mMeanShift.SetGaussianWeights(3);
-	mMeanShift.SetBlurBoundary(0.2);
+	mMeanShift.SetBlurBoundary(0.1);
+	mEdgeDarkeningFilter.SetGaussianWeights(5);
+
 	mEdgeWobbleFilter.setSmallEdgeNoiseIntensity(3);
 	
 

@@ -12,6 +12,7 @@
 #include "DryBrush.h"
 #include "ColourDensity.h"
 #include "EdgeWobbleFilter.h"
+#include "EdgeDarkeningFilter.h"
 #include "TestFilter.h"
 
 enum RenderOptions
@@ -41,7 +42,7 @@ public:
 private:
 
 	std::vector<Object> allObjects{};
-
+	XMVECTORF32 clearColour{ 0.9,0.9,0.9,1 };
 	DirectionalLight mDirLights[3];
 
 	XMFLOAT4X4 mBoxWorld;
@@ -60,11 +61,13 @@ private:
 	POINT mLastMousePos;
 
 	//for compute shader
-	BlurFilter mBlur;
+	BlurFilter mPreMeanShiftBlur;
 	MeanShiftFilter mMeanShift;
+	BlurFilter mPostMeanShiftBlur;
 	DryBrushFilter mDryBrushFilter;
 	ColourDensityFilter mColourDensityFilter;
 	EdgeWobbleFilter mEdgeWobbleFilter;
+	EdgeDarkeningFilter mEdgeDarkeningFilter;
 	TestFilter mTestFilter;
 
 	void DrawWrapper();

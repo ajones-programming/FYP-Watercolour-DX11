@@ -182,6 +182,16 @@ public:
 };
 #pragma endregion
 
+#pragma region EdgeDarkeningEffect
+class EdgeDarkeningEffect : public CSEffect
+{
+public:
+	EdgeDarkeningEffect(ID3D11Device* device);
+	void SetWeights(const float weights[17]) { Weights->SetFloatArray(weights, 0, 17); }
+	ID3DX11EffectScalarVariable* Weights;
+};
+#pragma endregion
+
 #pragma region Effects
 class Effects
 {
@@ -196,6 +206,7 @@ public:
 	static DryBrushEffect* DryBrushFX;
 	static ColourDensityEffect* ColourDensityFX;
 	static EdgeWobbleEffect* EdgeWobbleFX;
+	static EdgeDarkeningEffect* EdgeDarkenFX;
 	static TESTEffect* testFX;
 };
 #pragma endregion

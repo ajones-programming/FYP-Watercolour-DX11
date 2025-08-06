@@ -19,6 +19,16 @@ Texture2D gOverlay;
 
 #define N 256
 
+float3 ColourBurnMaths(float3 originalColour, float3 burnColour)
+{
+    
+    float intensity = (originalColour.r + originalColour.g + originalColour.b) / 3;
+    float3 inverted = float3(1, 1, 1) - originalColour;
+    inverted /= burnColour;
+    float3 result = float3(1, 1, 1) - inverted;
+    return result * 1 + (result * intensity + originalColour * (1 - intensity)) * 0;
+}
+
 [numthreads(N, 1, 1)]
 void ColourDensityCS(int3 groupThreadID : SV_GroupThreadID,
 				int3 dispatchThreadID : SV_DispatchThreadID)
@@ -31,13 +41,8 @@ void ColourDensityCS(int3 groupThreadID : SV_GroupThreadID,
     float4 sampledArea = gOverlay.SampleLevel(samAnisotropic, uv/4, 0);
     
     originalColor = pow(originalColor, Power);
-    float intensity = (originalColor.r + originalColor.g + originalColor.b) / 3;
-    float3 inverted = float3(1, 1, 1) - originalColor;
-    inverted /= (sampledArea * NoiseIntensity + (1 - NoiseIntensity));
-    float3 result = float3(1, 1, 1) - inverted;
-    float3 toReturn = result * 1 + (result * intensity + originalColor * (1 - intensity)) * 0;
-    
-    //gOutput[dispatchThreadID.xy] = float4(originalColor, 1);
+    float3 toReturn = ColourBurnMaths(originalColor.rgb, (sampledArea * NoiseIntensity + (1 - NoiseIntensity)).rgb);
+   
     gOutput[dispatchThreadID.xy] = float4(toReturn, 1); //sampledArea * 0.1 + originalColor;
 
 }

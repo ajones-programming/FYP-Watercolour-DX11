@@ -152,6 +152,14 @@ EdgeWobbleEffect::EdgeWobbleEffect(ID3D11Device* device)
 
 #pragma endregion
 
+#pragma region EdgeDarkeningEffect
+
+EdgeDarkeningEffect::EdgeDarkeningEffect(ID3D11Device* device) : CSEffect(device, L"FX/EdgeDarkening.fxo", "HorzEdgeDarkening", "VertEdgeDarkening"), Weights(mFX->GetVariableByName("gWeights")->AsScalar())
+{
+}
+
+#pragma endregion
+
 #pragma region Effects
 
 BasicEffect*			Effects::BasicFX      = 0;
@@ -161,6 +169,7 @@ MeanShiftEffect*		Effects::MeanShiftFX = 0;
 DryBrushEffect*			Effects::DryBrushFX = 0;
 ColourDensityEffect*	Effects::ColourDensityFX = 0;
 EdgeWobbleEffect*		Effects::EdgeWobbleFX = 0;
+EdgeDarkeningEffect*	Effects::EdgeDarkenFX = 0;
 TESTEffect*				Effects::testFX = 0;
 
 void Effects::InitAll(ID3D11Device* device)
@@ -172,6 +181,7 @@ void Effects::InitAll(ID3D11Device* device)
 	DryBrushFX			= new DryBrushEffect(device);
 	ColourDensityFX		= new ColourDensityEffect(device);
 	EdgeWobbleFX		= new EdgeWobbleEffect(device);
+	EdgeDarkenFX		= new EdgeDarkeningEffect(device);
 	testFX				= new TESTEffect(device);
 }
 
@@ -184,6 +194,7 @@ void Effects::DestroyAll()
 	SafeDelete(DryBrushFX);
 	SafeDelete(ColourDensityFX);
 	SafeDelete(EdgeWobbleFX);
+	SafeDelete(EdgeDarkenFX);
 	SafeDelete(testFX);
 }
 #pragma endregion

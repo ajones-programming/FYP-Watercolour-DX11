@@ -29,7 +29,7 @@ void BlurFilter::SetGaussianWeights(float sigma)
 	Effects::BlurFX->SetWeights(weights);
 }
 
-void BlurFilter::SetWeights(const float weights[9])
+void BlurFilter::SetWeights(const float weights[11])
 {
 	Effects::BlurFX->SetWeights(weights);
 }

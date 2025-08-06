@@ -20,7 +20,7 @@ public:
 	void SetGaussianWeights(float sigma);
 
 	// Manually specify blur weights.
-	void SetWeights(const float weights[9]);
+	void SetWeights(const float weights[11]);
 
 	///<summary>
 	/// Blurs the input texture blurCount times.  Note that this modifies the input texture, not a copy of it.

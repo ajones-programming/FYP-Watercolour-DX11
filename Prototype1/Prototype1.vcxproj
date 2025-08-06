@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\EdgeDarkeningFilter.cpp" />
     <ClCompile Include="src\EdgeWobbleFilter.cpp" />
     <ClCompile Include="src\ColourDensity.cpp" />
     <ClCompile Include="src\CSFilter.cpp" />
@@ -52,6 +53,7 @@
     <ClCompile Include="src\TestFilter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\EdgeDarkeningFilter.h" />
     <ClInclude Include="src\EdgeWobbleFilter.h" />
     <ClInclude Include="src\ColourDensity.h" />
     <ClInclude Include="src\CSFilter.h" />
@@ -151,6 +153,13 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="FX\test.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /Zi /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="FX\EdgeDarkening.fx">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /Zi /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>

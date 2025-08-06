@@ -106,7 +106,7 @@ fxgroup
                 mov r0.zw, r0.zzzw  // r0.z <- sampledArea1.x; r0.w <- sampledArea1.y
                 
                 #line 40
-                itof r1.xy, l(4, 4, 0, 0)
+                itof r1.xy, l(2, 2, 0, 0)
                 div r1.xy, r0.xyxx, r1.xyxx
                 itof r1.z, l(0)
                 sample_l_indexable(texture2d)(float,float,float,float) r1.xy, r1.xyxx, t1.xyzw, s0, r1.z

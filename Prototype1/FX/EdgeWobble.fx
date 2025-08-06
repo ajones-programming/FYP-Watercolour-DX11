@@ -37,7 +37,7 @@ void EdgeWobbleCS(int3 groupThreadID : SV_GroupThreadID,
 	//for sampling the image - found at https://gamedev.stackexchange.com/questions/116392/sampling-in-the-compute-shader-not-working
     float2 uv = float2(dispatchThreadID.xy) / float2(gInput.Length.xy);
     float2 sampledArea1 = gPerlinNoise.SampleLevel(samAnisotropic, uv*2, 0);
-    float2 sampledArea2 = gPerlinNoise.SampleLevel(samAnisotropic, uv/4, 0);
+    float2 sampledArea2 = gPerlinNoise.SampleLevel(samAnisotropic, uv/2, 0);
 	
     float2 newPosition = uv + (NoiseIntensity * (sampledArea1 - float2(0.5, 0.5)) / gInput.Length.xy) + (5 * (sampledArea2 - float2(0.5, 0.5)) / gInput.Length.xy);
     float4 sampleColour = gInput.SampleLevel(samAnisotropic, newPosition, 0);
