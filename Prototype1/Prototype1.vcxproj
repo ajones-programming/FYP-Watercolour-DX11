@@ -38,7 +38,7 @@
     <ClCompile Include="src\App_1.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Prototype1App.cpp" />
-    <ClCompile Include="src\RenderStates.cpp" />
+    <ClCompile Include="luna\RenderStates.cpp" />
     <ClCompile Include="src\Vertex.cpp" />
     <ClCompile Include="src\WICTextureLoader11.cpp" />
   </ItemGroup>
@@ -60,9 +60,8 @@
     <ClInclude Include="src\Effects.h" />
     <ClInclude Include="src\Object.h" />
     <ClInclude Include="src\App_1.h" />
-    <ClInclude Include="src\OBJ_Loader.h" />
     <ClInclude Include="src\Prototype1App.h" />
-    <ClInclude Include="src\RenderStates.h" />
+    <ClInclude Include="luna\RenderStates.h" />
     <ClInclude Include="src\Vertex.h" />
     <ClInclude Include="src\WICTextureLoader11.h" />
   </ItemGroup>
@@ -236,7 +235,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)luna;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)luna;$(SolutionDir)OBJ-Loader\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
