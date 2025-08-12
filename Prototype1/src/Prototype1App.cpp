@@ -1,5 +1,4 @@
 #include "Prototype1App.h"
-#include "Effects.h"
 #include "Vertex.h"
 #include "RenderStates.h"
 #include "GeometryGenerator.h"
@@ -19,14 +18,10 @@ PrototypeApp::PrototypeApp(HINSTANCE hInstance)
 	XMStoreFloat4x4(&mView, I);
 	XMStoreFloat4x4(&mProj, I);
 
-	XMMATRIX boxScale = XMMatrixScaling(15.0f, 15.0f, 15.0f);
-	XMMATRIX boxOffset = XMMatrixTranslation(8.0f, 5.0f, -15.0f);
-	XMStoreFloat4x4(&mBoxWorld, boxScale * boxOffset);
-
 	mDirLights[0].Ambient = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
 	mDirLights[0].Diffuse = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
 	mDirLights[0].Specular = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
-	mDirLights[0].Direction = XMFLOAT3(0.57735f, -0.57735f, 0.57735f);
+	mDirLights[0].Direction = XMFLOAT3(0.57735f, -0.57735f, 0.27735f);
 
 	mDirLights[1].Ambient = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
 	mDirLights[1].Diffuse = XMFLOAT4(0.20f, 0.20f, 0.20f, 1.0f);
@@ -61,10 +56,12 @@ bool PrototypeApp::Init()
 
 	// Must init Effects first since InputLayouts depend on shader signatures.
 	Effects::InitAll(md3dDevice);
+	InitCSFilters();
+
 	InputLayouts::InitAll(md3dDevice);
 	RenderStates::InitAll(md3dDevice);
 
-	InitCSFilters();
+	
 
 	BuildScreenQuadGeometryBuffers();
 	BuildOffscreenViews();
@@ -84,7 +81,6 @@ void PrototypeApp::OnResize()
 	mColourDensityFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
 	mEdgeWobbleFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
 	mEdgeDarkeningFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
-	mTestFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
 
 	XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f * MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
 	XMStoreFloat4x4(&mProj, P);
@@ -135,9 +131,9 @@ void PrototypeApp::DrawScene()
 	ID3D11ShaderResourceView* output = nullptr;
 	
 	
-	mPreMeanShiftBlur.BlurInPlace(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output,2);
-	mMeanShift.BlurInPlace(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output, 4);
-	mPostMeanShiftBlur.BlurInPlace(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output, 2);
+	mPreMeanShiftBlur.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output,2);
+	mMeanShift.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output, 4);
+	mPostMeanShiftBlur.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output, 2);
 	mDryBrushFilter.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
 	mColourDensityFilter.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
 	mEdgeWobbleFilter.Apply(md3dImmediateContext, mOffscreenSRV, mOffscreenUAV, &output);
@@ -217,9 +213,9 @@ void PrototypeApp::DrawWrapper()
 	// Set per frame constants.
 	Effects::ToonShaderBasicFX->SetDirLights(mDirLights);
 	Effects::ToonShaderBasicFX->SetEyePosW(mEyePosW);
-	Effects::ToonShaderBasicFX->SetFogColor(Colors::Silver);
-	Effects::ToonShaderBasicFX->SetFogStart(15.0f);
-	Effects::ToonShaderBasicFX->SetFogRange(175.0f);
+	Effects::ToonShaderBasicFX->SetFogColor(clearColour);
+	Effects::ToonShaderBasicFX->SetFogStart(35.0f);
+	Effects::ToonShaderBasicFX->SetFogRange(255.0f);
 
 	for (const auto& obj : allObjects) {
 		obj.Draw(md3dImmediateContext, view, proj);
@@ -337,25 +333,8 @@ void PrototypeApp::BuildOffscreenViews()
 	ReleaseCOM(offscreenTex);
 }
 
-void PrototypeApp::InitCSFilters()
+void PrototypeApp::CreateObject(std::string path, const float* scaling, const float* translation)
 {
-	mPreMeanShiftBlur.InitEffect();
-	mPostMeanShiftBlur.InitEffect();
-	mMeanShift.InitEffect();
-	mDryBrushFilter.InitEffect();
-	mColourDensityFilter.InitEffect();
-	mEdgeWobbleFilter.InitEffect();
-	mEdgeDarkeningFilter.InitEffect();
-	mTestFilter.InitEffect();
-
-	mPreMeanShiftBlur.SetGaussianWeights(1.2);
-	mPostMeanShiftBlur.SetGaussianWeights(0.5);
-	mMeanShift.SetGaussianWeights(3);
-	mMeanShift.SetBlurBoundary(0.1);
-	mEdgeDarkeningFilter.SetGaussianWeights(5);
-
-	mEdgeWobbleFilter.setSmallEdgeNoiseIntensity(3);
-	
-
-
+	allObjects.emplace_back(md3dDevice, path, scaling, translation);
 }
+

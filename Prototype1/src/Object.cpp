@@ -29,9 +29,9 @@ Object::Object(ID3D11Device* device, std::string path, const float* scaling, con
 	//this is inefficient, CHANGE THIS!!
 	for (auto& v : oldVertices) {
 		Vertex::Basic32 newV;
-		newV.Pos = DirectX::XMFLOAT3(v.Position.X, v.Position.Y, v.Position.Z);
-		newV.Normal = DirectX::XMFLOAT3(v.Normal.X, v.Normal.Y, v.Normal.Z);
-		newV.Tex = DirectX::XMFLOAT2(v.TextureCoordinate.X, v.TextureCoordinate.Y);
+		newV.Pos = DirectX::XMFLOAT3(-v.Position.X, v.Position.Y, v.Position.Z);
+		newV.Normal = DirectX::XMFLOAT3(-v.Normal.X, v.Normal.Y, v.Normal.Z);
+		newV.Tex = DirectX::XMFLOAT2(v.TextureCoordinate.X, 1-  v.TextureCoordinate.Y);
 		newVertices.emplace_back(std::move(newV));
 	}
 

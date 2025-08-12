@@ -11,17 +11,6 @@ class EdgeDarkeningFilter : public CSFilter
 {
 public:
 	EdgeDarkeningFilter();
-
-	// Generate Gaussian blur weights.
-	void SetGaussianWeights(float sigma);
-
-	// Manually specify blur weights.
-	void SetWeights(const float weights[17]);
-
-	///<summary>
-	/// Blurs the input texture blurCount times.  Note that this modifies the input texture, not a copy of it.
-	///</summary>
-	void InitEffect();
 protected:
 	void HorizontalConstants() {}
 	void VerticalConstants() {}

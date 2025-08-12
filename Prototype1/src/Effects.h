@@ -1,6 +1,7 @@
 //***************************************************************************************
-// Effects.h by Frank Luna (C) 2011 All Rights Reserved.
-//
+// Adapted version of Effects.h by Frank Luna (C) 2011 All Rights Reserved.
+// Do not redistribute for commercial purposes.
+// 
 // Defines lightweight effect wrappers to group an effect and its variables.
 // Also defines a static Effects class from which we can access all of our effects.
 //***************************************************************************************
@@ -9,6 +10,7 @@
 #define EFFECTS_H
 
 #include "d3dUtil.h"
+#include <map>
 
 #pragma region Effect
 class Effect
@@ -99,96 +101,69 @@ public:
 	void SetInputMap(ID3D11ShaderResourceView* tex) { InputMap->SetResource(tex); }
 	void SetOutputMap(ID3D11UnorderedAccessView* tex) { OutputMap->SetUnorderedAccessView(tex); }
 
+
 	ID3DX11EffectTechnique* HorzTech;
 	ID3DX11EffectTechnique* VertTech;
 
+	void defineFloatArray(std::string variableName) { floatArrayVariables.emplace(variableName,mFX->GetVariableByName(variableName.c_str())->AsScalar()); }
+	void setFloatArray(const std::string id, const float* array, const uint32_t size) {
+		auto variable = floatArrayVariables.find(id);
+		ID3DX11EffectScalarVariable* var;
+		if (variable != floatArrayVariables.end())
+		{
+			var = variable->second;
+		}
+		else {
+			auto newDefinition = mFX->GetVariableByName(id.c_str())->AsScalar();
+			floatArrayVariables.insert({ id, newDefinition });
+			var = newDefinition;
+		}
+		var->SetFloatArray(array, 0, size);
+	}
+
+	void defineFloat(std::string variableName) { floatVariables.emplace(variableName, mFX->GetVariableByName(variableName.c_str())->AsScalar()); }
+	void setFloat(const std::string id, const float value)
+	{
+		auto variable = floatVariables.find(id);
+		ID3DX11EffectScalarVariable* var;
+		if (variable != floatVariables.end())
+		{
+			var = variable->second;
+		}
+		else {
+			auto newDefinition = mFX->GetVariableByName(id.c_str())->AsScalar();
+			floatVariables.insert({ id, newDefinition });
+			var = newDefinition;
+		}
+		var->SetFloat(value);
+	}
+
+	void defineTexture(std::string variableName) { textureVariables.emplace(variableName, mFX->GetVariableByName(variableName.c_str())->AsShaderResource()); }
+	void setTexture(const std::string id, ID3D11ShaderResourceView* tex) {
+
+		auto variable = textureVariables.find(id);
+		ID3DX11EffectShaderResourceVariable * var;
+		if (variable != textureVariables.end())
+		{
+			var = variable->second;
+		}
+		else {
+			auto newDefinition = mFX->GetVariableByName(id.c_str())->AsShaderResource();
+			textureVariables.insert({ id, newDefinition });
+			var = newDefinition;
+		}
+		var->SetResource(tex);
+	}
+
+
+private:
+
+	std::map<std::string, ID3DX11EffectScalarVariable*> floatArrayVariables{};
+	std::map<std::string, ID3DX11EffectScalarVariable*> floatVariables{};
+	std::map<std::string, ID3DX11EffectShaderResourceVariable*> textureVariables{};
+
 	ID3DX11EffectShaderResourceVariable* InputMap;
 	ID3DX11EffectUnorderedAccessViewVariable* OutputMap;
-};
-#pragma endregion
-
-#pragma endregion
-
-#pragma region BlurEffect
-class BlurEffect : public CSEffect
-{
-public:
-	BlurEffect(ID3D11Device* device);
-
-	void SetWeights(const float weights[11])           { Weights->SetFloatArray(weights, 0, 11); }
-
-	ID3DX11EffectScalarVariable* Weights;
-};
-#pragma endregion
-
-#pragma region TESTEffect
-class TESTEffect : public CSEffect
-{
-public:
-	TESTEffect(ID3D11Device* device);
-};
-#pragma endregion
-
-
-#pragma region MeanShiftEffect
-class MeanShiftEffect : public CSEffect
-{
-public:
-	MeanShiftEffect(ID3D11Device* device);
-
-	void SetWeights(const float weights[11]) { Weights->SetFloatArray(weights, 0, 11); }
-	void SetMagnitudeBoundary(const float dif) { magnitudeDifference->SetFloat(dif); }
-
-	ID3DX11EffectScalarVariable* Weights;
-	ID3DX11EffectScalarVariable* magnitudeDifference;
-};
-#pragma endregion
-
-#pragma region DryBrushEffect
-class DryBrushEffect : public CSEffect
-{
-public:
-	DryBrushEffect(ID3D11Device* device);
-
-	void SetOverlayMap(ID3D11ShaderResourceView* tex) { OverlayMap->SetResource(tex); }
-	void SetPerlinMap(ID3D11ShaderResourceView* tex) { PerlinMap->SetResource(tex); }
-	ID3DX11EffectShaderResourceVariable* OverlayMap;
-	ID3DX11EffectShaderResourceVariable* PerlinMap;
-};
-#pragma endregion
-
-#pragma region ColourDensityEffect
-class ColourDensityEffect : public CSEffect
-{
-public:
-	ColourDensityEffect(ID3D11Device* device);
-
-	void SetOverlayMap(ID3D11ShaderResourceView* tex) { OverlayMap->SetResource(tex); }
-	ID3DX11EffectShaderResourceVariable* OverlayMap;
-};
-#pragma endregion
-
-
-#pragma region EdgeWobbleEffect
-class EdgeWobbleEffect : public CSEffect
-{
-public:
-	EdgeWobbleEffect(ID3D11Device* device);
-
-	void SetPerlinMap(ID3D11ShaderResourceView* tex) { PerlinMap->SetResource(tex); }
-	void SetSmallEdgeNoiseIntensity(float intensity) { smallEdgeNoiseIntensity->SetFloat(intensity); }
-	ID3DX11EffectShaderResourceVariable* PerlinMap;
-	ID3DX11EffectScalarVariable* smallEdgeNoiseIntensity;
-};
-#pragma endregion
-
-#pragma region EdgeDarkeningEffect
-class EdgeDarkeningEffect : public CSEffect
-{
-public:
-	EdgeDarkeningEffect(ID3D11Device* device);
-	void SetWeights(const float weights[17]) { Weights->SetFloatArray(weights, 0, 17); }
-	ID3DX11EffectScalarVariable* Weights;
 };
 #pragma endregion
 
@@ -201,13 +176,7 @@ public:
 
 	static BasicEffect* BasicFX;
 	static BasicEffect* ToonShaderBasicFX;
-	static BlurEffect* BlurFX;
-	static MeanShiftEffect* MeanShiftFX;
-	static DryBrushEffect* DryBrushFX;
-	static ColourDensityEffect* ColourDensityFX;
-	static EdgeWobbleEffect* EdgeWobbleFX;
-	static EdgeDarkeningEffect* EdgeDarkenFX;
-	static TESTEffect* testFX;
+
 };
 #pragma endregion
 

@@ -1,5 +1,6 @@
 //***************************************************************************************
-// Effects.cpp by Frank Luna (C) 2011 All Rights Reserved.
+// Adapted version of Effects.cpp by Frank Luna (C) 2011 All Rights Reserved.
+// Do not redistribute for commercial purposes.
 //***************************************************************************************
 
 #include "Effects.h"
@@ -94,108 +95,21 @@ CSEffect::~CSEffect()
 }
 #pragma endregion
 
-#pragma region TESTEffect
-
-TESTEffect::TESTEffect(ID3D11Device* device) : CSEffect(device, L"FX/test.fxo", "HorzTEST", "VertTEST")
-{
-}
-
-#pragma endregion
-
-#pragma region BlurEffect
-BlurEffect::BlurEffect(ID3D11Device* device)
-	: CSEffect(device, L"FX/Blur.fxo", "HorzBlur", "VertBlur"),
-	Weights(mFX->GetVariableByName("gWeights")->AsScalar())
-{
-}
-
-#pragma endregion
-
-
-#pragma region MeanShiftEffect
-MeanShiftEffect::MeanShiftEffect(ID3D11Device* device)
-	: CSEffect(device, L"FX/MeanShift.fxo", "HorzMeanShift", "VertMeanShift")
-{
-
-	Weights = mFX->GetVariableByName("gWeights")->AsScalar();
-	magnitudeDifference = mFX->GetVariableByName("magnitudeBoundary")->AsScalar();
-}
-#pragma endregion
-
-
-#pragma region DryBrushEffect
-DryBrushEffect::DryBrushEffect(ID3D11Device* device)
-	: CSEffect(device, L"FX/drybrush.fxo","DryBrush","Return")
-{
-	OverlayMap = mFX->GetVariableByName("gOverlay")->AsShaderResource();
-	PerlinMap = mFX->GetVariableByName("gPerlinNoise")->AsShaderResource();
-}
-
-#pragma endregion
-
-#pragma region ColourDensityEffect
-ColourDensityEffect::ColourDensityEffect(ID3D11Device* device)
-	: CSEffect(device, L"FX/ColourDensity.fxo", "ColourDensity", "Return")
-{
-	OverlayMap = mFX->GetVariableByName("gOverlay")->AsShaderResource();
-}
-
-#pragma endregion
-
-#pragma region EdgeWobbleEffect
-EdgeWobbleEffect::EdgeWobbleEffect(ID3D11Device* device)
-	: CSEffect(device, L"FX/EdgeWobble.fxo", "EdgeWobble", "ReturnEdgeWobble")
-{
-	PerlinMap = mFX->GetVariableByName("gPerlinNoise")->AsShaderResource();
-	smallEdgeNoiseIntensity = mFX->GetVariableByName("NoiseIntensity")->AsScalar();
-}
-
-#pragma endregion
-
-#pragma region EdgeDarkeningEffect
-
-EdgeDarkeningEffect::EdgeDarkeningEffect(ID3D11Device* device) : CSEffect(device, L"FX/EdgeDarkening.fxo", "HorzEdgeDarkening", "VertEdgeDarkening"), Weights(mFX->GetVariableByName("gWeights")->AsScalar())
-{
-}
-
-#pragma endregion
-
 #pragma region Effects
 
 BasicEffect*			Effects::BasicFX      = 0;
 BasicEffect*			Effects::ToonShaderBasicFX = 0;
-BlurEffect*				Effects::BlurFX       = 0;
-MeanShiftEffect*		Effects::MeanShiftFX = 0;
-DryBrushEffect*			Effects::DryBrushFX = 0;
-ColourDensityEffect*	Effects::ColourDensityFX = 0;
-EdgeWobbleEffect*		Effects::EdgeWobbleFX = 0;
-EdgeDarkeningEffect*	Effects::EdgeDarkenFX = 0;
-TESTEffect*				Effects::testFX = 0;
 
 void Effects::InitAll(ID3D11Device* device)
 {
 	BasicFX				= new BasicEffect(device, L"FX/Basic.fxo");
 	ToonShaderBasicFX	= new BasicEffect(device, L"FX/BasicToonShading.fxo");
-	BlurFX				= new BlurEffect(device);
-	MeanShiftFX			= new MeanShiftEffect(device);
-	DryBrushFX			= new DryBrushEffect(device);
-	ColourDensityFX		= new ColourDensityEffect(device);
-	EdgeWobbleFX		= new EdgeWobbleEffect(device);
-	EdgeDarkenFX		= new EdgeDarkeningEffect(device);
-	testFX				= new TESTEffect(device);
 }
 
 void Effects::DestroyAll()
 {
 	SafeDelete(BasicFX);
 	SafeDelete(ToonShaderBasicFX);
-	SafeDelete(BlurFX);
-	SafeDelete(MeanShiftFX);
-	SafeDelete(DryBrushFX);
-	SafeDelete(ColourDensityFX);
-	SafeDelete(EdgeWobbleFX);
-	SafeDelete(EdgeDarkenFX);
-	SafeDelete(testFX);
 }
 #pragma endregion
 

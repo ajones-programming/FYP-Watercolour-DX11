@@ -1,9 +1,12 @@
 //***************************************************************************************
-// CSFilter.cpp by Frank Luna (C) 2011 All Rights Reserved.
+// CSFilter.cpp
+// Adapted version of BlurFilter.cpp by Frank Luna (C) 2011 All Rights Reserved.
+// Do not redistribute for commercial purposes.
 //***************************************************************************************
 
 #include "CSFilter.h"
-#include "Effects.h"
+#include "WICTextureLoader11.h"
+#include <stdexcept>
 
 CSFilter::CSFilter()
 	: mOutputTexSRV(0), mOutputTexUAV(0), effect(0)
@@ -12,8 +15,12 @@ CSFilter::CSFilter()
 
 CSFilter::~CSFilter()
 {
+	SafeDelete(effect);
 	ReleaseCOM(mOutputTexSRV);
 	ReleaseCOM(mOutputTexUAV);
+	for (auto texture : allTextures) {
+		ReleaseCOM(texture.second);
+	}
 }
 
 ID3D11ShaderResourceView* CSFilter::GetOutput()
@@ -71,6 +78,11 @@ void CSFilter::Init(ID3D11Device* device, UINT width, UINT height, DXGI_FORMAT f
 	ReleaseCOM(blurredTex);
 }
 
+void CSFilter::InitEffects(ID3D11Device* device, const std::wstring& filename, const char* horzEffect, const char* vertEffect)
+{
+	effect = new CSEffect(device, filename, horzEffect, vertEffect);
+}
+
 void CSFilter::Apply(ID3D11DeviceContext* dc,
 	ID3D11ShaderResourceView* inputSRV,
 	ID3D11UnorderedAccessView* inputUAV,
@@ -126,4 +138,22 @@ void CSFilter::Apply(ID3D11DeviceContext* dc,
 	// Disable compute shader.
 	dc->CSSetShader(0, 0, 0);
 	*outputSRV = GetOutput();
+}
+
+void CSFilter::Apply(ID3D11DeviceContext* dc, ID3D11ShaderResourceView* inputSRV, ID3D11UnorderedAccessView* inputUAV, ID3D11ShaderResourceView** outputSRV, int loopCount)
+{
+	for (int i = 0; i < loopCount; ++i) {
+		Apply(dc, inputSRV, inputUAV, outputSRV);
+	}
+}
+
+void CSFilter::CreateAndApplyTexture(ID3D11Device* device, std::wstring url, std::string textureID)
+{
+	if (effect == nullptr) {
+		return;
+	}
+	ID3D11ShaderResourceView* newSRV = nullptr;
+	HR(CreateWICTextureFromFile(device, url.c_str(), 0, &newSRV));
+	effect->setTexture(textureID, newSRV);
+	allTextures.emplace(textureID, newSRV);
 }

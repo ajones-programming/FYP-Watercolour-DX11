@@ -52,9 +52,6 @@
     <ClCompile Include="src\App_1.cpp">
       <Filter>src\app</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoadingObject.cpp">
-      <Filter>src\app</Filter>
-    </ClCompile>
     <ClCompile Include="src\Object.cpp">
       <Filter>src\app</Filter>
     </ClCompile>
@@ -73,28 +70,12 @@
     <ClCompile Include="src\Vertex.cpp">
       <Filter>src\app</Filter>
     </ClCompile>
-    <ClCompile Include="src\BlurFilter.cpp">
-      <Filter>src\rendering\filters</Filter>
-    </ClCompile>
     <ClCompile Include="src\CSFilter.cpp">
       <Filter>src\rendering\filters</Filter>
     </ClCompile>
-    <ClCompile Include="src\DryBrush.cpp">
-      <Filter>src\rendering\filters</Filter>
+    <ClCompile Include="src\InitEffect.cpp">
+      <Filter>src\app</Filter>
     </ClCompile>
-    <ClCompile Include="src\MeanShiftFilter.cpp">
-      <Filter>src\rendering\filters</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ColourDensity.cpp">
-      <Filter>src\rendering\filters</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EdgeWobbleFilter.cpp">
-      <Filter>src\rendering\filters</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TestFilter.cpp">
-      <Filter>src\rendering\filters</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EdgeDarkeningFilter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\OBJ_Loader.h">
@@ -169,28 +150,9 @@
     <ClInclude Include="src\Vertex.h">
       <Filter>src\app</Filter>
     </ClInclude>
-    <ClInclude Include="src\BlurFilter.h">
-      <Filter>src\rendering\filters</Filter>
-    </ClInclude>
     <ClInclude Include="src\CSFilter.h">
       <Filter>src\rendering\filters</Filter>
     </ClInclude>
-    <ClInclude Include="src\DryBrush.h">
-      <Filter>src\rendering\filters</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MeanShiftFilter.h">
-      <Filter>src\rendering\filters</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ColourDensity.h">
-      <Filter>src\rendering\filters</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EdgeWobbleFilter.h">
-      <Filter>src\rendering\filters</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TestFilter.h">
-      <Filter>src\rendering\filters</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EdgeDarkeningFilter.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="FX\Basic.fx">

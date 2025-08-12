@@ -7,13 +7,7 @@
 #include "Object.h"
 
 
-#include "BlurFilter.h"
-#include "MeanShiftFilter.h"
-#include "DryBrush.h"
-#include "ColourDensity.h"
-#include "EdgeWobbleFilter.h"
-#include "EdgeDarkeningFilter.h"
-#include "TestFilter.h"
+#include "CSFilter.h"
 
 enum RenderOptions
 {
@@ -45,8 +39,6 @@ private:
 	XMVECTORF32 clearColour{ 0.9,0.9,0.9,1 };
 	DirectionalLight mDirLights[3];
 
-	XMFLOAT4X4 mBoxWorld;
-
 	XMFLOAT4X4 mView;
 	XMFLOAT4X4 mProj;
 
@@ -61,14 +53,13 @@ private:
 	POINT mLastMousePos;
 
 	//for compute shader
-	BlurFilter mPreMeanShiftBlur;
-	MeanShiftFilter mMeanShift;
-	BlurFilter mPostMeanShiftBlur;
-	DryBrushFilter mDryBrushFilter;
-	ColourDensityFilter mColourDensityFilter;
-	EdgeWobbleFilter mEdgeWobbleFilter;
-	EdgeDarkeningFilter mEdgeDarkeningFilter;
-	TestFilter mTestFilter;
+	CSFilter mPreMeanShiftBlur;
+	CSFilter mMeanShift;
+	CSFilter mPostMeanShiftBlur;
+	CSFilter mDryBrushFilter;
+	CSFilter mColourDensityFilter;
+	CSFilter mEdgeWobbleFilter;
+	CSFilter mEdgeDarkeningFilter;
 
 	void DrawWrapper();
 	void DrawScreenQuad(ID3D11ShaderResourceView* toDraw);
