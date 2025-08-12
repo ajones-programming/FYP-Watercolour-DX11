@@ -23,7 +23,7 @@
     <ClCompile Include="src\CSFilter.cpp" />
     <ClCompile Include="luna\d3dApp.cpp" />
     <ClCompile Include="luna\d3dUtil.cpp" />
-    <ClCompile Include="luna\DDSTextureLoader11.cpp" />
+    <ClCompile Include="directxtex\DDSTextureLoader11.cpp" />
     <ClCompile Include="luna\dxerr.cpp" />
     <ClCompile Include="luna\DXUT.cpp" />
     <ClCompile Include="luna\DXUTDevice11.cpp" />
@@ -40,14 +40,14 @@
     <ClCompile Include="src\Prototype1App.cpp" />
     <ClCompile Include="luna\RenderStates.cpp" />
     <ClCompile Include="src\Vertex.cpp" />
-    <ClCompile Include="src\WICTextureLoader11.cpp" />
+    <ClCompile Include="directxtex\WICTextureLoader11.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CSFilter.h" />
     <ClInclude Include="luna\d3dApp.h" />
     <ClInclude Include="luna\d3dUtil.h" />
     <ClInclude Include="luna\d3dx11effect.h" />
-    <ClInclude Include="luna\DDSTextureLoader11.h" />
+    <ClInclude Include="directxtex\DDSTextureLoader11.h" />
     <ClInclude Include="luna\dxerr.h" />
     <ClInclude Include="luna\DXUT.h" />
     <ClInclude Include="luna\DXUTDevice11.h" />
@@ -63,7 +63,7 @@
     <ClInclude Include="src\Prototype1App.h" />
     <ClInclude Include="luna\RenderStates.h" />
     <ClInclude Include="src\Vertex.h" />
-    <ClInclude Include="src\WICTextureLoader11.h" />
+    <ClInclude Include="directxtex\WICTextureLoader11.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FX\LightHelper.fx">
@@ -235,7 +235,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)luna;$(SolutionDir)OBJ-Loader\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)directxtex;$(ProjectDir)luna;$(SolutionDir)OBJ-Loader\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

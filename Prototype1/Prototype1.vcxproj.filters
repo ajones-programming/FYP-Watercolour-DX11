@@ -1,16 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\WICTextureLoader11.cpp">
-      <Filter>wic</Filter>
+    <ClCompile Include="directxtex\WICTextureLoader11.cpp">
+      <Filter>directxtex</Filter>
     </ClCompile>
     <ClCompile Include="luna\d3dApp.cpp">
       <Filter>luna</Filter>
     </ClCompile>
     <ClCompile Include="luna\d3dUtil.cpp">
-      <Filter>luna</Filter>
-    </ClCompile>
-    <ClCompile Include="luna\DDSTextureLoader11.cpp">
       <Filter>luna</Filter>
     </ClCompile>
     <ClCompile Include="luna\dxerr.cpp">
@@ -67,10 +64,13 @@
     <ClCompile Include="src\InitEffect.cpp">
       <Filter>src\app</Filter>
     </ClCompile>
+    <ClCompile Include="directxtex\DDSTextureLoader11.cpp">
+      <Filter>directxtex</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\WICTextureLoader11.h">
-      <Filter>wic</Filter>
+    <ClInclude Include="directxtex\WICTextureLoader11.h">
+      <Filter>directxtex</Filter>
     </ClInclude>
     <ClInclude Include="luna\d3dApp.h">
       <Filter>luna</Filter>
@@ -79,9 +79,6 @@
       <Filter>luna</Filter>
     </ClInclude>
     <ClInclude Include="luna\d3dx11effect.h">
-      <Filter>luna</Filter>
-    </ClInclude>
-    <ClInclude Include="luna\DDSTextureLoader11.h">
       <Filter>luna</Filter>
     </ClInclude>
     <ClInclude Include="luna\dxerr.h">
@@ -132,6 +129,9 @@
     <ClInclude Include="src\CSFilter.h">
       <Filter>src\rendering\filters</Filter>
     </ClInclude>
+    <ClInclude Include="directxtex\DDSTextureLoader11.h">
+      <Filter>directxtex</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="FX\Basic.fx">
@@ -175,12 +175,6 @@
     <Filter Include="luna">
       <UniqueIdentifier>{5612ef25-a80b-4cbd-8932-11612fe71fd1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="objLoader">
-      <UniqueIdentifier>{642bd650-6ae6-40b0-a7c9-3f0960667f31}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="wic">
-      <UniqueIdentifier>{57ec3988-acc9-4441-97c6-34639fa00eb6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\app">
       <UniqueIdentifier>{58319fd0-52f5-4fe7-b20a-9f047434aad4}</UniqueIdentifier>
     </Filter>
@@ -189,6 +183,9 @@
     </Filter>
     <Filter Include="src\rendering\filters">
       <UniqueIdentifier>{08c14e0f-a6a9-43db-9a3e-689c662d6590}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="directxtex">
+      <UniqueIdentifier>{57ec3988-acc9-4441-97c6-34639fa00eb6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
