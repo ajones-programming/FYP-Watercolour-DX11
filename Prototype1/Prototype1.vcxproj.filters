@@ -4,9 +4,6 @@
     <ClCompile Include="src\WICTextureLoader11.cpp">
       <Filter>wic</Filter>
     </ClCompile>
-    <ClCompile Include="luna\Camera.cpp">
-      <Filter>luna</Filter>
-    </ClCompile>
     <ClCompile Include="luna\d3dApp.cpp">
       <Filter>luna</Filter>
     </ClCompile>
@@ -43,12 +40,6 @@
     <ClCompile Include="luna\ScreenGrab.cpp">
       <Filter>luna</Filter>
     </ClCompile>
-    <ClCompile Include="luna\TextureMgr.cpp">
-      <Filter>luna</Filter>
-    </ClCompile>
-    <ClCompile Include="luna\Waves.cpp">
-      <Filter>luna</Filter>
-    </ClCompile>
     <ClCompile Include="src\App_1.cpp">
       <Filter>src\app</Filter>
     </ClCompile>
@@ -83,9 +74,6 @@
     </ClInclude>
     <ClInclude Include="src\WICTextureLoader11.h">
       <Filter>wic</Filter>
-    </ClInclude>
-    <ClInclude Include="luna\Camera.h">
-      <Filter>luna</Filter>
     </ClInclude>
     <ClInclude Include="luna\d3dApp.h">
       <Filter>luna</Filter>
@@ -124,12 +112,6 @@
       <Filter>luna</Filter>
     </ClInclude>
     <ClInclude Include="luna\ScreenGrab.h">
-      <Filter>luna</Filter>
-    </ClInclude>
-    <ClInclude Include="luna\TextureMgr.h">
-      <Filter>luna</Filter>
-    </ClInclude>
-    <ClInclude Include="luna\Waves.h">
       <Filter>luna</Filter>
     </ClInclude>
     <ClInclude Include="src\App_1.h">

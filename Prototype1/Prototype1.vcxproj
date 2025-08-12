@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClCompile Include="src\InitEffect.cpp" />
     <ClCompile Include="src\CSFilter.cpp" />
-    <ClCompile Include="luna\Camera.cpp" />
     <ClCompile Include="luna\d3dApp.cpp" />
     <ClCompile Include="luna\d3dUtil.cpp" />
     <ClCompile Include="luna\DDSTextureLoader11.cpp" />
@@ -34,8 +33,6 @@
     <ClCompile Include="luna\LightHelper.cpp" />
     <ClCompile Include="luna\MathHelper.cpp" />
     <ClCompile Include="luna\ScreenGrab.cpp" />
-    <ClCompile Include="luna\TextureMgr.cpp" />
-    <ClCompile Include="luna\Waves.cpp" />
     <ClCompile Include="src\Effects.cpp" />
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\App_1.cpp" />
@@ -47,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CSFilter.h" />
-    <ClInclude Include="luna\Camera.h" />
     <ClInclude Include="luna\d3dApp.h" />
     <ClInclude Include="luna\d3dUtil.h" />
     <ClInclude Include="luna\d3dx11effect.h" />
@@ -61,8 +57,6 @@
     <ClInclude Include="luna\LightHelper.h" />
     <ClInclude Include="luna\MathHelper.h" />
     <ClInclude Include="luna\ScreenGrab.h" />
-    <ClInclude Include="luna\TextureMgr.h" />
-    <ClInclude Include="luna\Waves.h" />
     <ClInclude Include="src\Effects.h" />
     <ClInclude Include="src\Object.h" />
     <ClInclude Include="src\App_1.h" />
