@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="FX">
+      <UniqueIdentifier>{f4a493ff-3811-4ce5-9902-f39c8e2e7d6b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -23,5 +26,40 @@
     <ClInclude Include="include\App_1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FX\Basic.fxo">
+      <Filter>FX</Filter>
+    </None>
+    <None Include="FX\BasicToonShading.fxo">
+      <Filter>FX</Filter>
+    </None>
+    <None Include="FX\Blur.fxo">
+      <Filter>FX</Filter>
+    </None>
+    <None Include="FX\ColourDensity.fxo">
+      <Filter>FX</Filter>
+    </None>
+    <None Include="FX\drybrush.fxo">
+      <Filter>FX</Filter>
+    </None>
+    <None Include="FX\EdgeDarkening.fxo">
+      <Filter>FX</Filter>
+    </None>
+    <None Include="FX\EdgeWobble.fxo">
+      <Filter>FX</Filter>
+    </None>
+    <None Include="FX\LightHelper.fxo">
+      <Filter>FX</Filter>
+    </None>
+    <None Include="FX\Lighting.fxo">
+      <Filter>FX</Filter>
+    </None>
+    <None Include="FX\MeanShift.fxo">
+      <Filter>FX</Filter>
+    </None>
+    <None Include="FX\test.fxo">
+      <Filter>FX</Filter>
+    </None>
   </ItemGroup>
 </Project>

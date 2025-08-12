@@ -61,7 +61,7 @@ Object::Object(ID3D11Device* device, std::string path, const float* scaling, con
 		HR(CreateWICTextureFromFile(device,str.c_str(), 0, &mModelMapSRV));
 	}
 	else {
-		HR(CreateDDSTextureFromFile(device, L"Textures/WoodCrate01.dds", 0, &mModelMapSRV));
+		HR(CreateWICTextureFromFile(device, L"../models/textures/CubeTexture.png", 0, &mModelMapSRV));
 	}
 
 	assert(mModelVB != nullptr);

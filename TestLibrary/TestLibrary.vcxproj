@@ -135,6 +135,19 @@
   <ItemGroup>
     <ClInclude Include="include\App_1.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="FX\Basic.fxo" />
+    <None Include="FX\BasicToonShading.fxo" />
+    <None Include="FX\Blur.fxo" />
+    <None Include="FX\ColourDensity.fxo" />
+    <None Include="FX\drybrush.fxo" />
+    <None Include="FX\EdgeDarkening.fxo" />
+    <None Include="FX\EdgeWobble.fxo" />
+    <None Include="FX\LightHelper.fxo" />
+    <None Include="FX\Lighting.fxo" />
+    <None Include="FX\MeanShift.fxo" />
+    <None Include="FX\test.fxo" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

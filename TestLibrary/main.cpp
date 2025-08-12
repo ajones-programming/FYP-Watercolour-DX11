@@ -1,6 +1,7 @@
 #include "App_1.h"
 
-const std::string route = "D://Files/University/Modules/TM470 Final Year Project/ExampleModels/exported/";
+
+const std::string route = "../models/exported/";
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 	PSTR cmdLine, int showCmd)
@@ -12,8 +13,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 
 	App_1 theApp(hInstance);
 
-	if (!theApp.Init(route+"cube.obj"))
+	if (!theApp.Init())
 		return 0;
+	{
+		float scaling[3] = { 3,3,3 };
+		float translation[3] = { 0,0,0 };
+		theApp.CreateObject(route + "landscape.obj", scaling, translation);
+	}
 
 	return theApp.Run();
 }

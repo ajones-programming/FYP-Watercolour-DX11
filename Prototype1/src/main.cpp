@@ -12,7 +12,7 @@
 
 #include "App_1.h"
 
-const std::string route = "D://Files/University/Modules/TM470 Final Year Project/ExampleModels/exported/";
+const std::string route = "../models/exported/";
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 	PSTR cmdLine, int showCmd)
@@ -26,29 +26,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 
 	if (!theApp.Init())
 		return 0;
-	//{
-	//	float scaling[3] = { 3,3,3 };
-	//	float translation[3] = { 0,0,0 };
-	//	theApp.CreateObject(route + "texturedcube.obj", scaling, translation);
-	//}
-	//{
-	//	float scaling[3] = { 3,3,3 };
-	//	float translation[3] = { 18,1,1 };
-	//	theApp.CreateObject(route + "cube.obj", scaling, translation);
-	//}
-
-	//{
-	//	float scaling[3] = { 1,1,1 };
-	//	float translation[3] = { -5,5,1 };
-	//	theApp.CreateObject(route + "apple.obj", scaling, translation);
-	//}
-
-	//{
-	//	float scaling[3] = { 1,1,1 };
-	//	float translation[3] = { 5,6,1 };
-	//	theApp.CreateObject(route + "apple.obj", scaling, translation);
-	//}
-
 	{
 		float scaling[3] = { 3,3,3 };
 		float translation[3] = { 0,0,0 };
