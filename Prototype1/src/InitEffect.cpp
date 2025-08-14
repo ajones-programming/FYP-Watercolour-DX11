@@ -1,4 +1,4 @@
-#include "Prototype1App.h"
+#include "WatercolourApp.h"
 
 void setWeights(float sigma, CSFilter& filter, std::string effectID, const uint32_t size) {
 	float d = 2.0f * sigma * sigma;
@@ -18,12 +18,12 @@ void setWeights(float sigma, CSFilter& filter, std::string effectID, const uint3
 	{
 		*(weights + i) /= sum;
 	}
-	filter.setFloatArray(effectID, weights, size);
+	filter.setShaderVariable(effectID, weights, size);
 
 	delete[] weights;
 }
 
-void PrototypeApp::InitCSFilters()
+void WatercolourApp::InitCSFilters()
 {
 	mPreMeanShiftBlur.InitEffects(md3dDevice, L"FX/Blur.fxo", "HorzBlur", "VertBlur");
 	mPostMeanShiftBlur.InitEffects(md3dDevice, L"FX/Blur.fxo", "HorzBlur", "VertBlur");
@@ -35,8 +35,8 @@ void PrototypeApp::InitCSFilters()
 
 
 	//move this to other part idk
-	mMeanShift.setFloat("magnitudeBoundary",0.03);
-	mEdgeWobbleFilter.setFloat("NoiseIntensity", 3);
+	mMeanShift.setShaderVariable("magnitudeBoundary",0.03);
+	mEdgeWobbleFilter.setShaderVariable("NoiseIntensity", 3);
 	
 	setWeights(3, mMeanShift, "gWeights", 11);
 	setWeights(0.5, mPreMeanShiftBlur, "gWeights", 11);

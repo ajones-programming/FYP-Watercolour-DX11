@@ -5,8 +5,7 @@
 //
 cbuffer cbSettings
 {
-    float   NoiseIntensity = 0.5;       // Offset:    0, size:    4
-    float   Power = 0.5;                // Offset:    4, size:    4
+    float   Power = 0.5;                // Offset:    0, size:    4
 }
 
 //
@@ -81,37 +80,37 @@ fxgroup
                 //   vThreadIDInGroup.x <- groupThreadID.x; vThreadIDInGroup.y <- groupThreadID.y; vThreadIDInGroup.z <- groupThreadID.z; 
                 //   vThreadID.x <- dispatchThreadID.x; vThreadID.y <- dispatchThreadID.y; vThreadID.z <- dispatchThreadID.z
                 //
-                #line 51 "D:\Files\University\Modules\TM470 Final Year Project\DX11\MyWork\MyProject\Prototype1\FX\drybrush.fx"
+                #line 37 "D:\Files\University\Modules\TM470 Final Year Project\DX11\MyWork\MyProject\Prototype1\FX\drybrush.fx"
                 mov r0.xy, vThreadID.xyxx
                 mov r0.zw, l(0,0,0,0)
                 ld_indexable(texture2d)(float,float,float,float) r0.xyz, r0.xyzw, t0.xyzw
                 mov r0.xyz, r0.xyzx  // r0.x <- originalColor.x; r0.y <- originalColor.y; r0.z <- originalColor.z
                 
-                #line 55
+                #line 41
                 itof r1.xy, vThreadID.xyxx
                 resinfo_indexable(texture2d)(float,float,float,float)_uint r1.zw, l(0), t0.zwxy
                 utof r1.zw, r1.zzzw
                 div r1.xy, r1.xyxx, r1.zwzz  // r1.x <- uv.x; r1.y <- uv.y
                 
-                #line 56
+                #line 42
                 itof r0.w, l(0)
                 sample_l_indexable(texture2d)(float,float,float,float) r1.xyz, r1.xyxx, t1.xyzw, s0, r0.w
                 mov r1.xyz, r1.xyzx  // r1.x <- sampledArea.x; r1.y <- sampledArea.y; r1.z <- sampledArea.z
                 
-                #line 58
+                #line 44
                 mul r1.xyz, r1.xyzx, l(0.100000, 0.100000, 0.100000, 0.000000)
                 add r0.xyz, r0.xyzx, r1.xyzx  // r0.x <- addedBrush.x; r0.y <- addedBrush.y; r0.z <- addedBrush.z
                 
-                #line 62
+                #line 48
                 mov r0.w, vThreadIDInGroup.x
                 store_structured g0.x, r0.w, l(0), r0.x
                 store_structured g0.x, r0.w, l(4), r0.y
                 store_structured g0.x, r0.w, l(8), r0.z
                 
-                #line 64
+                #line 50
                 sync_g_t
                 
-                #line 66
+                #line 52
                 mov r0.xyzw, vThreadID.xyyy
                 mov r1.x, vThreadIDInGroup.x
                 ld_structured r2.x, r1.x, l(0), g0.xxxx
@@ -120,7 +119,7 @@ fxgroup
                 itof r2.w, l(1)
                 store_uav_typed u0.xyzw, r0.xyzw, r2.xyzw
                 
-                #line 68
+                #line 54
                 ret 
                 // Approximately 26 instruction slots used
                             
@@ -172,16 +171,16 @@ fxgroup
                 //   vThreadIDInGroup.x <- groupThreadID.x; vThreadIDInGroup.y <- groupThreadID.y; vThreadIDInGroup.z <- groupThreadID.z; 
                 //   vThreadID.x <- dispatchThreadID.x; vThreadID.y <- dispatchThreadID.y; vThreadID.z <- dispatchThreadID.z
                 //
-                #line 74 "D:\Files\University\Modules\TM470 Final Year Project\DX11\MyWork\MyProject\Prototype1\FX\drybrush.fx"
+                #line 60 "D:\Files\University\Modules\TM470 Final Year Project\DX11\MyWork\MyProject\Prototype1\FX\drybrush.fx"
                 mov r0.xy, vThreadID.xyxx
                 mov r0.zw, l(0,0,0,0)
                 ld_indexable(texture2d)(float,float,float,float) r0.xyzw, r0.xyzw, t0.xyzw  // r0.x <- sampledColour.x; r0.y <- sampledColour.y; r0.z <- sampledColour.z; r0.w <- sampledColour.w
                 
-                #line 76
+                #line 62
                 mov r1.xyzw, vThreadID.xyyy
                 store_uav_typed u0.xyzw, r1.xyzw, r0.xyzw
                 
-                #line 77
+                #line 63
                 ret 
                 // Approximately 6 instruction slots used
                             

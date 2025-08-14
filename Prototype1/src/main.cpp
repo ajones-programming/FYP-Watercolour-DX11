@@ -10,7 +10,7 @@
 //***************************************************************************************
 
 
-#include "App_1.h"
+#include "AppInterface.h"
 
 const std::string route = "../models/exported/";
 
@@ -22,7 +22,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
 
-	App_1 theApp(hInstance);
+	AppInterface theApp(hInstance);
 
 	if (!theApp.Init())
 		return 0;

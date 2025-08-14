@@ -83,6 +83,8 @@ void HorzEdgeDarkeningCS(int3 groupThreadID : SV_GroupThreadID,
     }
     
     float difference = sqrt(pow(blurColor.r - originalColour.r, 2) + pow(blurColor.g - originalColour.g, 2) + pow(blurColor.b - originalColour.b, 2));
+    difference = pow(difference, 0.5);
+    difference = min(difference, 0.4);
     float3 newColour = originalColour * (1 - 1 * difference);
     
     float differenceIntensity = 0.5;
@@ -139,7 +141,8 @@ void VertEdgeDarkeningCS(int3 groupThreadID : SV_GroupThreadID,
     }
     
     float difference = sqrt(pow(blurColor.r - originalColour.r, 2) + pow(blurColor.g - originalColour.g, 2) + pow(blurColor.b - originalColour.b, 2));
-    float3 newColour = originalColour * (1 - 2 * difference);
+    difference = pow(difference, 0.5);
+    difference = min(difference, 0.4);
     
     float differenceIntensity = 0.5;
     float burnColour = (1 - difference) * differenceIntensity + (1 - differenceIntensity);

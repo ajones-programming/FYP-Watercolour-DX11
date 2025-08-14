@@ -38,7 +38,7 @@ void ColourDensityCS(int3 groupThreadID : SV_GroupThreadID,
 	
 	//for sampling the image - found at https://gamedev.stackexchange.com/questions/116392/sampling-in-the-compute-shader-not-working
     float2 uv = float2(dispatchThreadID.xy) / float2(gInput.Length.xy);
-    float4 sampledArea = gOverlay.SampleLevel(samAnisotropic, uv/4, 0);
+    float4 sampledArea = gOverlay.SampleLevel(samAnisotropic, uv/8, 0);
     
     originalColor = pow(originalColor, Power);
     float3 toReturn = ColourBurnMaths(originalColor.rgb, (sampledArea * NoiseIntensity + (1 - NoiseIntensity)).rgb);

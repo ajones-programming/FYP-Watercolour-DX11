@@ -29,7 +29,7 @@ ID3D11ShaderResourceView* CSFilter::GetOutput()
 }
 
 
-void CSFilter::Init(ID3D11Device* device, UINT width, UINT height, DXGI_FORMAT format)
+void CSFilter::InitDevice(ID3D11Device* device, UINT width, UINT height, DXGI_FORMAT format)
 {
 	// Start fresh.
 	ReleaseCOM(mOutputTexSRV);
@@ -94,13 +94,12 @@ void CSFilter::Apply(ID3D11DeviceContext* dc,
 
 		// HORIZONTAL blur pass.
 	D3DX11_TECHNIQUE_DESC techDesc;
-	effect->HorzTech->GetDesc(&techDesc);
+	effect->GetHorzTechnique()->GetDesc(&techDesc);
 	for (UINT p = 0; p < techDesc.Passes; ++p)
 	{
-		effect->SetInputMap(inputSRV);
-		effect->SetOutputMap(mOutputTexUAV);
+		effect->SetInputAndOutputMaps(inputSRV, mOutputTexUAV);
 		HorizontalConstants();
-		effect->HorzTech->GetPassByIndex(p)->Apply(0, dc);
+		effect->GetHorzTechnique()->GetPassByIndex(p)->Apply(0, dc);
 
 		// How many groups do we need to dispatch to cover a row of pixels, where each
 		// group covers 256 pixels (the 256 is defined in the ComputeShader).
@@ -118,13 +117,12 @@ void CSFilter::Apply(ID3D11DeviceContext* dc,
 	dc->CSSetUnorderedAccessViews(0, 1, nullUAV, 0);
 
 	// VERTICAL blur pass.
-	effect->VertTech->GetDesc(&techDesc);
+	effect->GetVertTechnique()->GetDesc(&techDesc);
 	for (UINT p = 0; p < techDesc.Passes; ++p)
 	{
-		effect->SetInputMap(mOutputTexSRV);
-		effect->SetOutputMap(inputUAV);
+		effect->SetInputAndOutputMaps(mOutputTexSRV, inputUAV);
 		VerticalConstants();
-		effect->VertTech->GetPassByIndex(p)->Apply(0, dc);
+		effect->GetVertTechnique()->GetPassByIndex(p)->Apply(0, dc);
 
 		// How many groups do we need to dispatch to cover a column of pixels, where each
 		// group covers 256 pixels  (the 256 is defined in the ComputeShader).

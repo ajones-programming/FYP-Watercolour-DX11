@@ -7,7 +7,6 @@
 //ADAPTED FOR MEAN SHIFT
 cbuffer cbSettings
 {
-    float NoiseIntensity = 0.5;
     float Power = 0.5;
 };
 
@@ -30,19 +29,6 @@ Texture2D gPerlinNoise;
 groupshared float3 gCache[CacheSize];
 
 #define N 256
-
-float3 ColourBurn(float3 originalColor, float2 uv)
-{
-    //for sampling the image - found at https://gamedev.stackexchange.com/questions/116392/sampling-in-the-compute-shader-not-working
-    float4 sampledArea = gPerlinNoise.SampleLevel(samAnisotropic, uv / 4, 0);
-    
-    originalColor = pow(originalColor, Power);
-    float intensity = (originalColor.r + originalColor.g + originalColor.b) / 3;
-    float3 inverted = float3(1, 1, 1) - originalColor;
-    inverted /= (sampledArea * NoiseIntensity + (1 - NoiseIntensity));
-    float3 result = float3(1, 1, 1) - inverted;
-    return result * 1 + (result * intensity + originalColor * (1 - intensity)) * 0;
-}
 
 [numthreads(N, 1, 1)]
 void DryBrushCS(int3 groupThreadID : SV_GroupThreadID,

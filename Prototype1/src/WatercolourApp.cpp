@@ -1,10 +1,10 @@
-#include "Prototype1App.h"
+#include "WatercolourApp.h"
 #include "Vertex.h"
 #include "RenderStates.h"
 #include "GeometryGenerator.h"
 
 
-PrototypeApp::PrototypeApp(HINSTANCE hInstance)
+WatercolourApp::WatercolourApp(HINSTANCE hInstance)
 	: D3DApp(hInstance), mEyePosW(0.0f, 0.0f, 0.0f), mRenderOptions(RenderOptions::TexturesAndFog),
 	mTheta(1.3f * MathHelper::Pi), mPhi(0.4f * MathHelper::Pi), mRadius(80.0f)
 {
@@ -34,7 +34,7 @@ PrototypeApp::PrototypeApp(HINSTANCE hInstance)
 	mDirLights[2].Direction = XMFLOAT3(0.0f, -0.707f, -0.707f);
 }
 
-PrototypeApp::~PrototypeApp()
+WatercolourApp::~WatercolourApp()
 {
 	md3dImmediateContext->ClearState();
 
@@ -49,7 +49,7 @@ PrototypeApp::~PrototypeApp()
 	RenderStates::DestroyAll();
 }
 
-bool PrototypeApp::Init()
+bool WatercolourApp::Init()
 {
 	if (!D3DApp::Init())
 		return false;
@@ -70,23 +70,23 @@ bool PrototypeApp::Init()
 	return true;
 }
 
-void PrototypeApp::OnResize()
+void WatercolourApp::OnResize()
 {
 	D3DApp::OnResize();
 
-	mPreMeanShiftBlur.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
-	mPostMeanShiftBlur.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
-	mMeanShift.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
-	mDryBrushFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
-	mColourDensityFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
-	mEdgeWobbleFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
-	mEdgeDarkeningFilter.Init(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+	mPreMeanShiftBlur.InitDevice(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+	mPostMeanShiftBlur.InitDevice(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+	mMeanShift.InitDevice(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+	mDryBrushFilter.InitDevice(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+	mColourDensityFilter.InitDevice(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+	mEdgeWobbleFilter.InitDevice(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
+	mEdgeDarkeningFilter.InitDevice(md3dDevice, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM);
 
 	XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f * MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
 	XMStoreFloat4x4(&mProj, P);
 }
 
-void PrototypeApp::UpdateScene(float dt)
+void WatercolourApp::UpdateScene(float dt)
 {
 	// Convert Spherical to Cartesian coordinates.
 	float x = mRadius * sinf(mPhi) * cosf(mTheta);
@@ -116,7 +116,7 @@ void PrototypeApp::UpdateScene(float dt)
 		mRenderOptions = RenderOptions::TexturesAndFog;
 }
 
-void PrototypeApp::DrawScene()
+void WatercolourApp::DrawScene()
 {
 	ID3D11RenderTargetView* renderTargets[1] = { mOffscreenRTV };
 	md3dImmediateContext->OMSetRenderTargets(1, renderTargets, mDepthStencilView);
@@ -150,7 +150,7 @@ void PrototypeApp::DrawScene()
 	HR(mSwapChain->Present(0, 0));
 }
 
-void PrototypeApp::OnMouseDown(WPARAM btnState, int x, int y)
+void WatercolourApp::OnMouseDown(WPARAM btnState, int x, int y)
 {
 	mLastMousePos.x = x;
 	mLastMousePos.y = y;
@@ -158,12 +158,12 @@ void PrototypeApp::OnMouseDown(WPARAM btnState, int x, int y)
 	SetCapture(mhMainWnd);
 }
 
-void PrototypeApp::OnMouseUp(WPARAM btnState, int x, int y)
+void WatercolourApp::OnMouseUp(WPARAM btnState, int x, int y)
 {
 	ReleaseCapture();
 }
 
-void PrototypeApp::OnMouseMove(WPARAM btnState, int x, int y)
+void WatercolourApp::OnMouseMove(WPARAM btnState, int x, int y)
 {
 	if ((btnState & MK_LBUTTON) != 0)
 	{
@@ -195,7 +195,7 @@ void PrototypeApp::OnMouseMove(WPARAM btnState, int x, int y)
 	mLastMousePos.y = y;
 }
 
-void PrototypeApp::DrawWrapper()
+void WatercolourApp::DrawWrapper()
 {
 
 
@@ -222,7 +222,7 @@ void PrototypeApp::DrawWrapper()
 	}
 }
 
-void PrototypeApp::DrawScreenQuad(ID3D11ShaderResourceView* toDraw)
+void WatercolourApp::DrawScreenQuad(ID3D11ShaderResourceView* toDraw)
 {
 	md3dImmediateContext->IASetInputLayout(InputLayouts::Basic32);
 	md3dImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -252,7 +252,7 @@ void PrototypeApp::DrawScreenQuad(ID3D11ShaderResourceView* toDraw)
 	}
 }
 
-void PrototypeApp::BuildScreenQuadGeometryBuffers()
+void WatercolourApp::BuildScreenQuadGeometryBuffers()
 {
 	GeometryGenerator::MeshData quad;
 
@@ -298,7 +298,7 @@ void PrototypeApp::BuildScreenQuadGeometryBuffers()
 	HR(md3dDevice->CreateBuffer(&ibd, &iinitData, &mScreenQuadIB));
 }
 
-void PrototypeApp::BuildOffscreenViews()
+void WatercolourApp::BuildOffscreenViews()
 {
 	// We call this function everytime the window is resized so that the render target is a quarter
 // the client area dimensions.  So Release the previous views before we create new ones.
@@ -333,7 +333,7 @@ void PrototypeApp::BuildOffscreenViews()
 	ReleaseCOM(offscreenTex);
 }
 
-void PrototypeApp::CreateObject(std::string path, const float* scaling, const float* translation)
+void WatercolourApp::CreateObject(std::string path, const float* scaling, const float* translation)
 {
 	allObjects.emplace_back(md3dDevice, path, scaling, translation);
 }

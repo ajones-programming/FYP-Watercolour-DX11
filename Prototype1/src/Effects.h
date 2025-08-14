@@ -98,15 +98,20 @@ public:
 	CSEffect(ID3D11Device* device, const std::wstring& filename, const char* horzEffect, const char* vertEffect);
 	~CSEffect();
 
-	void SetInputMap(ID3D11ShaderResourceView* tex) { InputMap->SetResource(tex); }
-	void SetOutputMap(ID3D11UnorderedAccessView* tex) { OutputMap->SetUnorderedAccessView(tex); }
+	void SetInputAndOutputMaps(ID3D11ShaderResourceView* input, ID3D11UnorderedAccessView* output)
+	{ 
+		InputMap->SetResource(input);
+		OutputMap->SetUnorderedAccessView(output);
+	}
+
+	ID3DX11EffectTechnique* GetHorzTechnique() { return HorzTech; }
+	ID3DX11EffectTechnique* GetVertTechnique() { return VertTech; }
 
 
-	ID3DX11EffectTechnique* HorzTech;
-	ID3DX11EffectTechnique* VertTech;
 
-	void defineFloatArray(std::string variableName) { floatArrayVariables.emplace(variableName,mFX->GetVariableByName(variableName.c_str())->AsScalar()); }
-	void setFloatArray(const std::string id, const float* array, const uint32_t size) {
+
+
+	void setShaderVariable(const std::string id, const float* array, const uint32_t size) {
 		auto variable = floatArrayVariables.find(id);
 		ID3DX11EffectScalarVariable* var;
 		if (variable != floatArrayVariables.end())
@@ -121,8 +126,7 @@ public:
 		var->SetFloatArray(array, 0, size);
 	}
 
-	void defineFloat(std::string variableName) { floatVariables.emplace(variableName, mFX->GetVariableByName(variableName.c_str())->AsScalar()); }
-	void setFloat(const std::string id, const float value)
+	void setShaderVariable(const std::string id, const float value)
 	{
 		auto variable = floatVariables.find(id);
 		ID3DX11EffectScalarVariable* var;
@@ -138,7 +142,6 @@ public:
 		var->SetFloat(value);
 	}
 
-	void defineTexture(std::string variableName) { textureVariables.emplace(variableName, mFX->GetVariableByName(variableName.c_str())->AsShaderResource()); }
 	void setTexture(const std::string id, ID3D11ShaderResourceView* tex) {
 
 		auto variable = textureVariables.find(id);
@@ -164,6 +167,9 @@ private:
 
 	ID3DX11EffectShaderResourceVariable* InputMap;
 	ID3DX11EffectUnorderedAccessViewVariable* OutputMap;
+
+	ID3DX11EffectTechnique* HorzTech;
+	ID3DX11EffectTechnique* VertTech;
 };
 #pragma endregion
 

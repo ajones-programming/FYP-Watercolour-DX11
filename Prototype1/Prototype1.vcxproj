@@ -35,9 +35,9 @@
     <ClCompile Include="luna\ScreenGrab.cpp" />
     <ClCompile Include="src\Effects.cpp" />
     <ClCompile Include="src\Object.cpp" />
-    <ClCompile Include="src\App_1.cpp" />
+    <ClCompile Include="src\AppInterface.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Prototype1App.cpp" />
+    <ClCompile Include="src\WatercolourApp.cpp" />
     <ClCompile Include="luna\RenderStates.cpp" />
     <ClCompile Include="src\Vertex.cpp" />
     <ClCompile Include="directxtex\WICTextureLoader11.cpp" />
@@ -59,8 +59,8 @@
     <ClInclude Include="luna\ScreenGrab.h" />
     <ClInclude Include="src\Effects.h" />
     <ClInclude Include="src\Object.h" />
-    <ClInclude Include="src\App_1.h" />
-    <ClInclude Include="src\Prototype1App.h" />
+    <ClInclude Include="src\AppInterface.h" />
+    <ClInclude Include="src\WatercolourApp.h" />
     <ClInclude Include="luna\RenderStates.h" />
     <ClInclude Include="src\Vertex.h" />
     <ClInclude Include="directxtex\WICTextureLoader11.h" />

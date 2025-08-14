@@ -16,11 +16,11 @@ enum RenderOptions
 	TexturesAndFog = 2
 };
 
-class PrototypeApp : public D3DApp
+class WatercolourApp : public D3DApp
 {
 public:
-	PrototypeApp(HINSTANCE hInstance);
-	~PrototypeApp();
+	WatercolourApp(HINSTANCE hInstance);
+	~WatercolourApp();
 
 	bool Init();
 	void OnResize();
