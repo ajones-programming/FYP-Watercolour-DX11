@@ -150,27 +150,10 @@ float4 PS(VertexOut pin, uniform int gLightCount, uniform bool gUseTexure, unifo
         }
         
         float4 resultingSpec = spec;
-        //magnitude = sqrt(pow(resultingSpec.r, 2) + pow(resultingSpec.g, 2) + pow(resultingSpec.b, 2));
-        //if (magnitude < 0.4 && magnitude != 0)
-        //{
-        //    resultingSpec /= float4(magnitude, magnitude, magnitude, 1);
-        //    resultingSpec = float4(0.2, 0.2, 0.2, 1);
-        //}
-        //else if (magnitude > 0.7)
-        //{
-        //    resultingSpec /= float4(magnitude, magnitude, magnitude, 1);
-        //    resultingSpec = float4(0.8, 0.8, 0.8, 0.8);
-        //}
-        //else if (magnitude != 0)
-        //{
-        //    float normalised = (magnitude - 0.4) / (0.7 - 0.4);
-        //    float newMagnitude = 0.6 * normalised + 0.2;
-        //    resultingSpec /= float4(magnitude, magnitude, magnitude, 1);
-        //    resultingSpec = float4(newMagnitude, newMagnitude, newMagnitude, 1);
-        //}
+
         
-        litColor = texColor * resultingMultiplier + resultingSpec;
-       
+        //litColor = texColor * resultingMultiplier + resultingSpec;
+        litColor = texColor * pow(resultingMultiplier,0.4) + resultingSpec;
     }
 
 	//

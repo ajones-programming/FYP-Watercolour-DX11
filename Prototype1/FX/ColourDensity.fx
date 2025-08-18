@@ -1,6 +1,6 @@
 cbuffer cbSettings
 {
-    float NoiseIntensity = 0.5;
+    float NoiseIntensity = 0.7;
     float Power = 0.5;
 };
 

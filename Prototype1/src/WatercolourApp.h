@@ -31,12 +31,12 @@ public:
 	void OnMouseUp(WPARAM btnState, int x, int y);
 	void OnMouseMove(WPARAM btnState, int x, int y);
 
-	void CreateObject(std::string path, const float* scaling, const float* translation);
+	Object* CreateObject(std::string path, const float* scaling, const float* translation);
 
 private:
 
 	std::vector<Object> allObjects{};
-	XMVECTORF32 clearColour{ 0.9,0.9,0.9,1 };
+	XMVECTORF32 clearColour{ 0.95,0.95,0.95,1 };
 	DirectionalLight mDirLights[3];
 
 	XMFLOAT4X4 mView;

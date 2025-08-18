@@ -46,9 +46,6 @@ Object::Object(ID3D11Device* device, std::string path, const float* scaling, con
 	vinitData.pSysMem = &newVertices[0];
 	HR(device->CreateBuffer(&vbd, &vinitData, &mModelVB));
 
-	HR(CreateDDSTextureFromFile(device, L"Textures/WoodCrate01.dds", 0, &mModelMapSRV));
-	
-
 	mModelMat = Material();
 	mModelMat.Ambient = DirectX::XMFLOAT4(material.Ka.X, material.Ka.Y, material.Ka.Z, 1);
 	mModelMat.Diffuse = DirectX::XMFLOAT4(material.Kd.X, material.Kd.Y, material.Kd.Z, 1);

@@ -1,5 +1,16 @@
-#include "App_1.h"
+//***************************************************************************************
+// BoxDemo.cpp by Frank Luna (C) 2011 All Rights Reserved.
+//
+// Demonstrates rendering a colored box.
+//
+// Controls:
+//		Hold the left mouse button down and move the mouse to rotate.
+//      Hold the right mouse button down to zoom in and out.
+//
+//***************************************************************************************
 
+
+#include "AppInterface.h"
 
 const std::string route = "../models/exported/";
 
@@ -23,3 +34,5 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 
 	return theApp.Run();
 }
+
+

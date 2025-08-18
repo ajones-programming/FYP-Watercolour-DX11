@@ -407,18 +407,21 @@ fxgroup
                 #line 152
                 mov r1.xyz, r1.xyzx  // r1.x <- resultingSpec.x; r1.y <- resultingSpec.y; r1.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r0.xyz, r0.xyzx
+                mul r0.xyz, r0.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r0.xyz, r0.xyzx
                 mul r0.xyz, r0.xyzx, r2.xyzx
                 add r0.xyz, r1.xyzx, r0.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 94 instruction slots used
+                // Approximately 97 instruction slots used
                             
             };
         }
@@ -860,18 +863,21 @@ fxgroup
                 #line 152
                 mov r1.xyz, r1.xyzx  // r1.x <- resultingSpec.x; r1.y <- resultingSpec.y; r1.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r0.xyz, r0.xyzx
+                mul r0.xyz, r0.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r0.xyz, r0.xyzx
                 mul r0.xyz, r0.xyzx, r2.xyzx
                 add r0.xyz, r1.xyzx, r0.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 131 instruction slots used
+                // Approximately 134 instruction slots used
                             
             };
         }
@@ -1382,18 +1388,21 @@ fxgroup
                 #line 152
                 mov r1.xyz, r1.xyzx  // r1.x <- resultingSpec.x; r1.y <- resultingSpec.y; r1.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r0.xyz, r0.xyzx
+                mul r0.xyz, r0.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r0.xyz, r0.xyzx
                 mul r0.xyz, r0.xyzx, r2.xyzx
                 add r0.xyz, r1.xyzx, r0.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 168 instruction slots used
+                // Approximately 171 instruction slots used
                             
             };
         }
@@ -1589,10 +1598,10 @@ fxgroup
                 #line 109
                 mov r0.xyz, r0.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 189
+                #line 172
                 mul r0.w, r0.w, cb0[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
@@ -1974,18 +1983,21 @@ fxgroup
                 #line 152
                 mov r1.xyz, r1.xyzx  // r1.x <- resultingSpec.x; r1.y <- resultingSpec.y; r1.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r0.xyz, r0.xyzx
+                mul r0.xyz, r0.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r0.xyz, r0.xyzx
                 mul r0.xyz, r0.xyzx, r2.xyzx
                 add r0.xyz, r1.xyzx, r0.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 94 instruction slots used
+                // Approximately 97 instruction slots used
                             
             };
         }
@@ -2432,18 +2444,21 @@ fxgroup
                 #line 152
                 mov r1.xyz, r1.xyzx  // r1.x <- resultingSpec.x; r1.y <- resultingSpec.y; r1.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r0.xyz, r0.xyzx
+                mul r0.xyz, r0.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r0.xyz, r0.xyzx
                 mul r0.xyz, r0.xyzx, r2.xyzx
                 add r0.xyz, r1.xyzx, r0.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 131 instruction slots used
+                // Approximately 134 instruction slots used
                             
             };
         }
@@ -2959,18 +2974,21 @@ fxgroup
                 #line 152
                 mov r1.xyz, r1.xyzx  // r1.x <- resultingSpec.x; r1.y <- resultingSpec.y; r1.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r0.xyz, r0.xyzx
+                mul r0.xyz, r0.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r0.xyz, r0.xyzx
                 mul r0.xyz, r0.xyzx, r2.xyzx
                 add r0.xyz, r1.xyzx, r0.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 168 instruction slots used
+                // Approximately 171 instruction slots used
                             
             };
         }
@@ -3173,10 +3191,10 @@ fxgroup
                 #line 109
                 mov r0.xyz, r0.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 189
+                #line 172
                 mul r0.w, r0.w, cb0[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
@@ -3565,18 +3583,21 @@ fxgroup
                 #line 152
                 mov r1.xyz, r1.xyzx  // r1.x <- resultingSpec.x; r1.y <- resultingSpec.y; r1.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r0.xyz, r0.xyzx
+                mul r0.xyz, r0.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r0.xyz, r0.xyzx
                 mul r0.xyz, r0.xyzx, r2.xyzx
                 add r0.xyz, r1.xyzx, r0.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 99 instruction slots used
+                // Approximately 102 instruction slots used
                             
             };
         }
@@ -4030,18 +4051,21 @@ fxgroup
                 #line 152
                 mov r1.xyz, r1.xyzx  // r1.x <- resultingSpec.x; r1.y <- resultingSpec.y; r1.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r0.xyz, r0.xyzx
+                mul r0.xyz, r0.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r0.xyz, r0.xyzx
                 mul r0.xyz, r0.xyzx, r2.xyzx
                 add r0.xyz, r1.xyzx, r0.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 136 instruction slots used
+                // Approximately 139 instruction slots used
                             
             };
         }
@@ -4564,18 +4588,21 @@ fxgroup
                 #line 152
                 mov r1.xyz, r1.xyzx  // r1.x <- resultingSpec.x; r1.y <- resultingSpec.y; r1.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r0.xyz, r0.xyzx
+                mul r0.xyz, r0.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r0.xyz, r0.xyzx
                 mul r0.xyz, r0.xyzx, r2.xyzx
                 add r0.xyz, r1.xyzx, r0.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 173 instruction slots used
+                // Approximately 176 instruction slots used
                             
             };
         }
@@ -4948,31 +4975,34 @@ fxgroup
                 #line 152
                 mov r0.xyz, r0.xyzx  // r0.x <- resultingSpec.x; r0.y <- resultingSpec.y; r0.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r1.xyz, r1.xyzx
+                mul r1.xyz, r1.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r1.xyz, r1.xyzx
                 mul r1.xyz, r1.xyzx, r2.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 182
+                #line 165
                 mov r1.x, -cb0[12].w
                 add r0.w, r0.w, r1.x
                 div r0.w, r0.w, cb0[13].x
                 max r0.w, r0.w, l(0.000000)
                 min r0.w, r0.w, l(1.000000)  // r0.w <- fogLerp
                 
-                #line 185
+                #line 168
                 mov r1.xyz, -r0.xyzx
                 add r1.xyz, r1.xyzx, cb0[14].xyzx
                 mul r1.xyz, r0.wwww, r1.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 103 instruction slots used
+                // Approximately 106 instruction slots used
                             
             };
         }
@@ -5414,31 +5444,34 @@ fxgroup
                 #line 152
                 mov r0.xyz, r0.xyzx  // r0.x <- resultingSpec.x; r0.y <- resultingSpec.y; r0.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r1.xyz, r1.xyzx
+                mul r1.xyz, r1.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r1.xyz, r1.xyzx
                 mul r1.xyz, r1.xyzx, r2.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 182
+                #line 165
                 mov r1.x, -cb0[12].w
                 add r0.w, r0.w, r1.x
                 div r0.w, r0.w, cb0[13].x
                 max r0.w, r0.w, l(0.000000)
                 min r0.w, r0.w, l(1.000000)  // r0.w <- fogLerp
                 
-                #line 185
+                #line 168
                 mov r1.xyz, -r0.xyzx
                 add r1.xyz, r1.xyzx, cb0[14].xyzx
                 mul r1.xyz, r0.wwww, r1.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 140 instruction slots used
+                // Approximately 143 instruction slots used
                             
             };
         }
@@ -5949,31 +5982,34 @@ fxgroup
                 #line 152
                 mov r0.xyz, r0.xyzx  // r0.x <- resultingSpec.x; r0.y <- resultingSpec.y; r0.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r1.xyz, r1.xyzx
+                mul r1.xyz, r1.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r1.xyz, r1.xyzx
                 mul r1.xyz, r1.xyzx, r2.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 182
+                #line 165
                 mov r1.x, -cb0[12].w
                 add r0.w, r0.w, r1.x
                 div r0.w, r0.w, cb0[13].x
                 max r0.w, r0.w, l(0.000000)
                 min r0.w, r0.w, l(1.000000)  // r0.w <- fogLerp
                 
-                #line 185
+                #line 168
                 mov r1.xyz, -r0.xyzx
                 add r1.xyz, r1.xyzx, cb0[14].xyzx
                 mul r1.xyz, r0.wwww, r1.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 177 instruction slots used
+                // Approximately 180 instruction slots used
                             
             };
         }
@@ -6200,23 +6236,23 @@ fxgroup
                 #line 109
                 mov r1.xyz, r1.xyzx  // r1.x <- litColor.x; r1.y <- litColor.y; r1.z <- litColor.z
                 
-                #line 182
+                #line 165
                 mov r0.y, -cb0[12].w
                 add r0.x, r0.y, r0.x
                 div r0.x, r0.x, cb0[13].x
                 max r0.x, r0.x, l(0.000000)
                 min r0.x, r0.x, l(1.000000)  // r0.x <- fogLerp
                 
-                #line 185
+                #line 168
                 mov r0.yzw, -r1.xxyz
                 add r0.yzw, r0.yyzw, cb0[14].xxyz
                 mul r0.xyz, r0.yzwy, r0.xxxx
                 add r0.xyz, r0.xyzx, r1.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 189
+                #line 172
                 mul r0.w, r1.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
@@ -6598,31 +6634,34 @@ fxgroup
                 #line 152
                 mov r0.xyz, r0.xyzx  // r0.x <- resultingSpec.x; r0.y <- resultingSpec.y; r0.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r1.xyz, r1.xyzx
+                mul r1.xyz, r1.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r1.xyz, r1.xyzx
                 mul r1.xyz, r1.xyzx, r2.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 182
+                #line 165
                 mov r1.x, -cb0[12].w
                 add r0.w, r0.w, r1.x
                 div r0.w, r0.w, cb0[13].x
                 max r0.w, r0.w, l(0.000000)
                 min r0.w, r0.w, l(1.000000)  // r0.w <- fogLerp
                 
-                #line 185
+                #line 168
                 mov r1.xyz, -r0.xyzx
                 add r1.xyz, r1.xyzx, cb0[14].xyzx
                 mul r1.xyz, r0.wwww, r1.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 103 instruction slots used
+                // Approximately 106 instruction slots used
                             
             };
         }
@@ -7069,31 +7108,34 @@ fxgroup
                 #line 152
                 mov r0.xyz, r0.xyzx  // r0.x <- resultingSpec.x; r0.y <- resultingSpec.y; r0.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r1.xyz, r1.xyzx
+                mul r1.xyz, r1.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r1.xyz, r1.xyzx
                 mul r1.xyz, r1.xyzx, r2.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 182
+                #line 165
                 mov r1.x, -cb0[12].w
                 add r0.w, r0.w, r1.x
                 div r0.w, r0.w, cb0[13].x
                 max r0.w, r0.w, l(0.000000)
                 min r0.w, r0.w, l(1.000000)  // r0.w <- fogLerp
                 
-                #line 185
+                #line 168
                 mov r1.xyz, -r0.xyzx
                 add r1.xyz, r1.xyzx, cb0[14].xyzx
                 mul r1.xyz, r0.wwww, r1.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 140 instruction slots used
+                // Approximately 143 instruction slots used
                             
             };
         }
@@ -7609,31 +7651,34 @@ fxgroup
                 #line 152
                 mov r0.xyz, r0.xyzx  // r0.x <- resultingSpec.x; r0.y <- resultingSpec.y; r0.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r1.xyz, r1.xyzx
+                mul r1.xyz, r1.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r1.xyz, r1.xyzx
                 mul r1.xyz, r1.xyzx, r2.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 182
+                #line 165
                 mov r1.x, -cb0[12].w
                 add r0.w, r0.w, r1.x
                 div r0.w, r0.w, cb0[13].x
                 max r0.w, r0.w, l(0.000000)
                 min r0.w, r0.w, l(1.000000)  // r0.w <- fogLerp
                 
-                #line 185
+                #line 168
                 mov r1.xyz, -r0.xyzx
                 add r1.xyz, r1.xyzx, cb0[14].xyzx
                 mul r1.xyz, r0.wwww, r1.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 177 instruction slots used
+                // Approximately 180 instruction slots used
                             
             };
         }
@@ -7867,23 +7912,23 @@ fxgroup
                 #line 109
                 mov r1.xyz, r1.xyzx  // r1.x <- litColor.x; r1.y <- litColor.y; r1.z <- litColor.z
                 
-                #line 182
+                #line 165
                 mov r0.y, -cb0[12].w
                 add r0.x, r0.y, r0.x
                 div r0.x, r0.x, cb0[13].x
                 max r0.x, r0.x, l(0.000000)
                 min r0.x, r0.x, l(1.000000)  // r0.x <- fogLerp
                 
-                #line 185
+                #line 168
                 mov r0.yzw, -r1.xxyz
                 add r0.yzw, r0.yyzw, cb0[14].xxyz
                 mul r0.xyz, r0.yzwy, r0.xxxx
                 add r0.xyz, r0.xyzx, r1.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 189
+                #line 172
                 mul r0.w, r1.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
@@ -8272,31 +8317,34 @@ fxgroup
                 #line 152
                 mov r0.xyz, r0.xyzx  // r0.x <- resultingSpec.x; r0.y <- resultingSpec.y; r0.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r1.xyz, r1.xyzx
+                mul r1.xyz, r1.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r1.xyz, r1.xyzx
                 mul r1.xyz, r1.xyzx, r2.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 182
+                #line 165
                 mov r1.x, -cb0[12].w
                 add r0.w, r0.w, r1.x
                 div r0.w, r0.w, cb0[13].x
                 max r0.w, r0.w, l(0.000000)
                 min r0.w, r0.w, l(1.000000)  // r0.w <- fogLerp
                 
-                #line 185
+                #line 168
                 mov r1.xyz, -r0.xyzx
                 add r1.xyz, r1.xyzx, cb0[14].xyzx
                 mul r1.xyz, r0.wwww, r1.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 108 instruction slots used
+                // Approximately 111 instruction slots used
                             
             };
         }
@@ -8750,31 +8798,34 @@ fxgroup
                 #line 152
                 mov r0.xyz, r0.xyzx  // r0.x <- resultingSpec.x; r0.y <- resultingSpec.y; r0.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r1.xyz, r1.xyzx
+                mul r1.xyz, r1.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r1.xyz, r1.xyzx
                 mul r1.xyz, r1.xyzx, r2.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 182
+                #line 165
                 mov r1.x, -cb0[12].w
                 add r0.w, r0.w, r1.x
                 div r0.w, r0.w, cb0[13].x
                 max r0.w, r0.w, l(0.000000)
                 min r0.w, r0.w, l(1.000000)  // r0.w <- fogLerp
                 
-                #line 185
+                #line 168
                 mov r1.xyz, -r0.xyzx
                 add r1.xyz, r1.xyzx, cb0[14].xyzx
                 mul r1.xyz, r0.wwww, r1.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 145 instruction slots used
+                // Approximately 148 instruction slots used
                             
             };
         }
@@ -9297,31 +9348,34 @@ fxgroup
                 #line 152
                 mov r0.xyz, r0.xyzx  // r0.x <- resultingSpec.x; r0.y <- resultingSpec.y; r0.z <- resultingSpec.z
                 
-                #line 172
+                #line 156
+                log r1.xyz, r1.xyzx
+                mul r1.xyz, r1.xyzx, l(0.400000, 0.400000, 0.400000, 0.000000)
+                exp r1.xyz, r1.xyzx
                 mul r1.xyz, r1.xyzx, r2.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx  // r0.x <- litColor.x; r0.y <- litColor.y; r0.z <- litColor.z
                 
-                #line 182
+                #line 165
                 mov r1.x, -cb0[12].w
                 add r0.w, r0.w, r1.x
                 div r0.w, r0.w, cb0[13].x
                 max r0.w, r0.w, l(0.000000)
                 min r0.w, r0.w, l(1.000000)  // r0.w <- fogLerp
                 
-                #line 185
+                #line 168
                 mov r1.xyz, -r0.xyzx
                 add r1.xyz, r1.xyzx, cb0[14].xyzx
                 mul r1.xyz, r0.wwww, r1.xyzx
                 add r0.xyz, r0.xyzx, r1.xyzx
                 
-                #line 189
+                #line 172
                 mul r0.w, r2.w, cb1[17].w  // r0.w <- litColor.w
                 
-                #line 191
+                #line 174
                 mov o0.xyz, r0.xyzx
                 mov o0.w, r0.w
                 ret 
-                // Approximately 182 instruction slots used
+                // Approximately 185 instruction slots used
                             
             };
         }
