@@ -35,7 +35,7 @@ public:
 
 private:
 
-	std::vector<Object> allObjects{};
+	std::vector<const Object*> allObjects{};
 	XMVECTORF32 clearColour{ 0.95,0.95,0.95,1 };
 	DirectionalLight mDirLights[3];
 

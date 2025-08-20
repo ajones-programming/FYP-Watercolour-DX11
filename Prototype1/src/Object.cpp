@@ -12,13 +12,17 @@ static int totalID = 0;
 Object::Object(ID3D11Device* device, std::string path, const float* scaling, const float* translation) : id(totalID++) {
 
 	
-
-	XMMATRIX boxScale = XMMatrixScaling(*(scaling), *(scaling + 1), *(scaling + 2));
-	XMMATRIX boxOffset = XMMatrixTranslation(*(translation), *(translation + 1), *(translation + 2));
-	XMStoreFloat4x4(&transform, boxScale * boxOffset);
+	setScale(scaling);
+	setTranslation(translation);
 
 	objl::Loader loader;
 	bool loaded = loader.LoadFile(path);
+
+	if (!loaded) {
+		isValid = false;
+		return;
+	}
+
 	auto& oldVertices = loader.LoadedVertices;
 	auto& material = loader.LoadedMaterials[0];
 
@@ -45,7 +49,6 @@ Object::Object(ID3D11Device* device, std::string path, const float* scaling, con
 	D3D11_SUBRESOURCE_DATA vinitData;
 	vinitData.pSysMem = &newVertices[0];
 	HR(device->CreateBuffer(&vbd, &vinitData, &mModelVB));
-
 	mModelMat = Material();
 	mModelMat.Ambient = DirectX::XMFLOAT4(material.Ka.X, material.Ka.Y, material.Ka.Z, 1);
 	mModelMat.Diffuse = DirectX::XMFLOAT4(material.Kd.X, material.Kd.Y, material.Kd.Z, 1);

@@ -47,6 +47,10 @@ WatercolourApp::~WatercolourApp()
 	Effects::DestroyAll();
 	InputLayouts::DestroyAll();
 	RenderStates::DestroyAll();
+
+	for (const Object* o : allObjects) {
+		delete o;
+	}
 }
 
 bool WatercolourApp::Init()
@@ -217,8 +221,8 @@ void WatercolourApp::DrawWrapper()
 	Effects::ToonShaderBasicFX->SetFogStart(35.0f);
 	Effects::ToonShaderBasicFX->SetFogRange(255.0f);
 
-	for (const auto& obj : allObjects) {
-		obj.Draw(md3dImmediateContext, view, proj);
+	for (const Object* obj : allObjects) {
+		obj->Draw(md3dImmediateContext, view, proj);
 	}
 }
 
@@ -335,7 +339,12 @@ void WatercolourApp::BuildOffscreenViews()
 
 Object* WatercolourApp::CreateObject(std::string path, const float* scaling, const float* translation)
 {
-	allObjects.emplace_back(md3dDevice, path, scaling, translation);
-	return nullptr;
+	Object* obj = new Object(md3dDevice, path, scaling, translation);
+	if (!obj->IsValid()) {
+		delete obj;
+		return nullptr;
+	}
+	allObjects.push_back(obj);
+	return obj;
 }
 

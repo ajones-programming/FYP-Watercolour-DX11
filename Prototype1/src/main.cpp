@@ -26,10 +26,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 
 	if (!theApp.Init())
 		return 0;
+
+	//theApp.RunTests();
+
 	{
 		float scaling[3] = { 3,3,3 };
 		float translation[3] = { 0,0,0 };
 		theApp.CreateObject(route + "landscape.obj", scaling, translation);
+
 	}
 
 	return theApp.Run();

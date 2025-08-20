@@ -187,6 +187,9 @@
     <Filter Include="directxtex">
       <UniqueIdentifier>{57ec3988-acc9-4441-97c6-34639fa00eb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\testing">
+      <UniqueIdentifier>{bae627fe-1fe7-41a2-8f77-e988dedcd0c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="FX\LightHelper.fx">
